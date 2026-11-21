@@ -111,19 +111,6 @@
         </details>
         <details class="asteroid-disclosure">
           <summary id="asteroid-technical-details">
-            <span class="asteroid-disclosure-title">Physics2D 기반 미사일 판정</span>
-            <span class="asteroid-disclosure-summary">직격 피해를 먼저 적용하고, 강화에 따라 범위 피해와 관통을 처리합니다.</span>
-          </summary>
-          <div class="asteroid-disclosure-body">
-            <ol class="asteroid-process-flow" role="list">
-              <li><strong>직격 피해</strong><span>미사일이 맞힌 소행성에 피해를 먼저 적용합니다.</span></li>
-              <li><strong>폭발 범위 판정</strong><span>폭발형 미사일은 <code>Physics2D.OverlapCircle</code>로 명중 지점 주변의 소행성을 찾아 범위 피해를 줍니다.</span></li>
-              <li><strong>관통 여부 결정</strong><span>이번 충돌에 쓸 관통 횟수가 있으면 계속 날아가고, 없으면 미사일을 회수합니다.</span></li>
-            </ol>
-          </div>
-        </details>
-        <details class="asteroid-disclosure">
-          <summary>
             <span class="asteroid-disclosure-title">연구 카드 데이터와 효과 적용</span>
             <span class="asteroid-disclosure-summary">선택한 카드의 능력치·외형·특수 효과를 플레이에 적용합니다.</span>
           </summary>
