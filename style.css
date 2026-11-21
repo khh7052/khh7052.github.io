@@ -47,10 +47,6 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .work-overview { padding-block: clamp(28px,4vw,56px); }
 .work-overview h2 { font-size: clamp(24px,2.6vw,36px); margin-bottom: clamp(16px,2vw,26px); }
 .practice-overview { padding-bottom: 0; }
-.practice-overview .project-card { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); max-width: 800px; }
-.practice-overview .project-card img { border-radius: 7px 0 0 7px; }
-.practice-overview .project-card-info { align-content: center; grid-template-rows: auto auto auto; }
-.practice-overview .project-card strong { font-size: clamp(21px,2vw,28px); }
 .project-index { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(12px,1.6vw,24px); }
 .project-card { display: flex; flex-direction: column; background: #fffef9; border: 1px solid var(--line); border-radius: 8px; }
 .project-card:hover { border-color: var(--muted); }
@@ -100,8 +96,6 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
   body { font-size: 15px; }
   .head { min-height: 56px; }
   .head nav { gap: 12px; font-size: 13px; }
-  .practice-overview .project-card { grid-template-columns: 1fr; }
-  .practice-overview .project-card img { border-radius: 7px 7px 0 0; }
   .name { font-size: 17px; }
   .name span { display: none; }
   .hero-grid,.projects article { display: flex; flex-direction: column; align-items: stretch; }
