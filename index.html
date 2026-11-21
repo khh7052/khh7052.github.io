@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-problem-layout">
+<link rel="stylesheet" href="style.css?v=asteroid-case-comparisons">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -156,23 +156,29 @@
       <h2 id="asteroid-problem-title">문제 해결 과정</h2>
       <div class="asteroid-problem-cases">
         <article>
-          <div class="asteroid-case-heading"><h3>첫 미사일을 쏠 때 화면이 끊김</h3></div>
+          <h3>첫 미사일을 쏠 때 화면이 끊김</h3>
+          <dl class="asteroid-case-comparison" aria-label="워밍업 비교 결과">
+            <div><dt>첫 발사 함수</dt><dd>실행 시간이 짧아짐</dd></div>
+            <div><dt>발사 직후 화면 갱신</dt><dd>워밍업 전후 측정 범위가 겹침</dd></div>
+          </dl>
           <div class="asteroid-case-body">
             <dl class="asteroid-case-steps">
               <div><dt>발견</dt><dd>직접 플레이하며 첫 발사 순간 화면이 끊기는 걸 확인했습니다.</dd></div>
-              <div><dt>비교</dt><dd>같은 씬과 무기에서 워밍업 유무만 바꿔 발사 함수 시간과 직후 화면 갱신 간격을 비교하도록 요청했습니다. 발사 함수는 빨라졌지만 화면 갱신 간격 범위는 겹쳤습니다.</dd></div>
-              <div><dt>다음 조치</dt><dd>전투 중 미사일과 소행성을 재사용하도록 풀링을 요청했습니다.</dd></div>
+              <div><dt>비교와 대응</dt><dd>같은 씬과 무기에서 워밍업 유무만 바꿔 두 시간 지표를 따로 비교하도록 요청했습니다. 화면 끊김이 줄었다고 판단하기 어려웠고, 이어 미사일과 소행성을 재사용하는 풀링을 요청했습니다.</dd></div>
             </dl>
             <p class="asteroid-case-verification"><strong>검증</strong><span>Codex가 풀링을 구현했습니다. Unity Editor 비교에서 준비된 오브젝트를 가져오는 호출 비용이 줄었습니다.</span></p>
           </div>
         </article>
         <article>
-          <div class="asteroid-case-heading"><h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3></div>
+          <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>
+          <dl class="asteroid-case-comparison" aria-label="소행성 생성 로직 변경">
+            <div><dt>변경 전 · 공용 예산</dt><dd>비용이 큰 후보가 기다리면 다른 생성도 멈춤</dd></div>
+            <div><dt>변경 후 · 비용별 예산</dt><dd>비용이 큰 후보가 기다려도 일반 생성은 계속</dd></div>
+          </dl>
           <div class="asteroid-case-body">
             <dl class="asteroid-case-steps">
               <div><dt>발견</dt><dd>소행성이 뜸해지는 장면이 일반 웨이브 도중에 발생한다고 짚었습니다.</dd></div>
-              <div><dt>원인</dt><dd>비용이 큰 소행성이 다음 후보로 뽑히면, 예산이 찰 때까지 다른 소행성의 생성도 멈췄습니다.</dd></div>
-              <div><dt>수정 방향</dt><dd>비용이 큰 소행성의 예산을 따로 쌓고, 생성 가능한 소행성은 계속 나오게 하는 방안에 동의했습니다.</dd></div>
+              <div><dt>원인과 대응</dt><dd>다음 후보의 비용이 충족될 때까지 생성 전체가 기다리는 구조였습니다. 전체 생성 예산 안에서 비용이 큰 소행성의 몫을 따로 쌓는 방안에 동의했습니다.</dd></div>
             </dl>
             <p class="asteroid-case-verification"><strong>검증</strong><span>Codex가 생성 로직을 수정하고 10분 분량의 생성 시뮬레이션과 Unity 컴파일로 확인했습니다.</span></p>
           </div>
