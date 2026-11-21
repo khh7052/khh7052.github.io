@@ -1,6 +1,6 @@
 const dialog = document.querySelector('.project-dialog');
 const content = dialog.querySelector('.project-dialog-content');
-const detailLink = dialog.querySelector('.project-dialog-page');
+const headingSlot = dialog.querySelector('.project-dialog-heading');
 const closeButton = dialog.querySelector('button');
 const cards = [...document.querySelectorAll('.project-card')];
 
@@ -14,15 +14,16 @@ if (typeof dialog.showModal === 'function') {
     request = new AbortController();
     const { signal } = request;
     activeCard = card;
-    detailLink.href = card.href;
+    dialog.classList.remove('is-closing');
 
-    const title = document.createElement('h2');
+    const title = document.createElement('h1');
     title.id = 'project-dialog-title';
     title.textContent = card.querySelector('strong').textContent;
     const status = document.createElement('p');
     status.role = 'status';
     status.textContent = '상세 정보를 불러오는 중입니다.';
-    content.replaceChildren(title, status);
+    headingSlot.replaceChildren(title);
+    content.replaceChildren(status);
     if (!dialog.open) dialog.showModal();
     dialog.scrollTop = 0;
 
@@ -32,28 +33,50 @@ if (typeof dialog.showModal === 'function') {
       const page = new DOMParser().parseFromString(await response.text(), 'text/html');
       if (signal.aborted) return;
       const article = page.querySelector('.project-detail article');
-      const heading = article?.querySelector('h1');
+      const projectTitle = article?.querySelector('.project-title');
+      const heading = projectTitle?.querySelector('h1');
       if (!heading) throw new Error('Project detail unavailable');
       heading.id = title.id;
+      headingSlot.replaceChildren(projectTitle);
       content.replaceChildren(article);
     } catch {
-      if (!signal.aborted) status.textContent = '상세 정보를 불러오지 못했습니다. 상단 링크에서 작품 페이지를 열 수 있습니다.';
+      if (signal.aborted) return;
+      status.textContent = '상세 정보를 불러오지 못했습니다.';
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.textContent = '다시 시도';
+      retry.addEventListener('click', () => {
+        closeButton.focus();
+        void showProject(card);
+      });
+      content.append(retry);
     }
   }
 
-  function syncDialog() {
-    closing = false;
-    const card = cards.find((item) => item.href === history.state?.projectDetail);
-    if (card) {
-      if (card !== activeCard || !dialog.open) void showProject(card);
-      return;
-    }
-    if (!dialog.open) return;
-    request.abort();
+  async function hideProject() {
+    if (!dialog.open || dialog.classList.contains('is-closing')) return;
+    const closingRequest = request;
+    closingRequest.abort();
+    dialog.classList.add('is-closing');
+    await Promise.allSettled(dialog.getAnimations().map((animation) => animation.finished));
+    if (request !== closingRequest) return;
     dialog.close();
+    dialog.classList.remove('is-closing');
     content.replaceChildren();
     activeCard?.focus({ preventScroll: true });
     activeCard = undefined;
+    closing = false;
+  }
+
+  function syncDialog() {
+    const card = cards.find((item) => item.href === history.state?.projectDetail);
+    if (card) {
+      closing = false;
+      if (card !== activeCard || !dialog.open || dialog.classList.contains('is-closing')) void showProject(card);
+      return;
+    }
+    closing = true;
+    void hideProject();
   }
 
   function closeProject() {

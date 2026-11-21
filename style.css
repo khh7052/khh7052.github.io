@@ -83,14 +83,32 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-copy { grid-area: copy; }
 .team-role { font-weight: 700; }
 .project-copy h2 { margin-bottom: 8px; font-size: clamp(19px,1.6vw,24px); }
-.project-dialog { width: min(1040px,calc(100% - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: #fffef9; overscroll-behavior: contain; }
-.project-dialog::backdrop { background: rgb(15 20 22 / 75%); }
+.project-dialog { width: min(1120px,calc(100% - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: #fffef9; overscroll-behavior: contain; box-shadow: 0 20px 64px rgb(10 15 18 / 30%); }
+.project-dialog,.project-dialog::backdrop { opacity: 1; transition: opacity 180ms ease; }
+.project-dialog::backdrop { background: rgb(15 20 22 / 72%); }
+.project-dialog.is-closing,.project-dialog.is-closing::backdrop { opacity: 0; }
+.project-dialog.is-closing { pointer-events: none; }
+@starting-style {
+  .project-dialog[open],.project-dialog[open]::backdrop { opacity: 0; }
+}
+@media(prefers-reduced-motion:reduce){
+  .project-dialog,.project-dialog::backdrop { transition: none; }
+}
 body:has(.project-dialog[open]) { overflow: hidden; }
-.project-dialog-toolbar { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px clamp(16px,3vw,32px); border-bottom: 1px solid var(--line); background: #fffef9; font-size: 14px; }
-.project-dialog-toolbar button { min-height: 44px; padding-inline: 12px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+.project-dialog-toolbar { position: sticky; top: 0; z-index: 1; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; padding: clamp(14px,2.3vw,28px) clamp(16px,3vw,36px); border-bottom: 1px solid var(--line); background: var(--paper); font-size: 14px; }
+.project-dialog-heading { min-width: 0; }
+.project-dialog-heading .project-title { margin: 0; }
+.project-dialog-heading h1 { font-size: clamp(22px,3vw,40px); line-height: 1.15; }
+.project-dialog-heading .team-role { color: var(--muted); }
+.project-dialog button { min-height: 44px; padding-inline: 12px; border: 1px solid var(--line); border-radius: 6px; background: #fffef9; color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+.project-dialog-toolbar button { flex-shrink: 0; }
+.project-dialog button:hover { border-color: var(--muted); }
+.project-dialog button:focus-visible { outline: 3px solid #e68e27; outline-offset: 3px; }
 .project-dialog-toolbar span { margin-left: 4px; font-size: 18px; }
-.project-dialog-content { margin: 0; padding: clamp(16px,3vw,32px); }
-.project-dialog-content article { padding: 0; border: 0; }
+.project-dialog-content { margin: 0; padding: clamp(16px,3vw,36px); }
+.projects.project-dialog-content article { padding: 0; border: 0; }
+.project-dialog-content .project-media > * { border-radius: 8px; }
+.project-dialog-content > button { margin-top: 12px; }
 .links { flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: 14px; font-weight: 650; }
 .foot { justify-content: space-between; gap: 18px; padding-block: 38px; }
 .foot h2 { font-size: 30px; margin-block: 4px; }
