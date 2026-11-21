@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-first-shot-flow">
+<link rel="stylesheet" href="style.css?v=asteroid-case-results">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -158,18 +158,18 @@
         <article>
           <h3 id="asteroid-first-shot-title">첫 미사일을 쏠 때 화면이 끊김</h3>
           <ol class="asteroid-shot-flow" role="list">
-            <li><h4>첫 발사 끊김 발견</h4><p>직접 플레이하다가 첫 미사일을 쏘는 순간 화면이 멈칫하는 걸 봤습니다.</p></li>
+            <li><h4>첫 발사 끊김 발견</h4><p>직접 플레이하면서 첫 미사일을 쏘는 순간 화면이 멈칫하는 것을 발견했습니다.</p></li>
             <li>
               <h4>워밍업 전후 비교</h4>
-              <p>같은 씬과 무기에서 워밍업을 켰을 때와 껐을 때의 첫 발사를 비교해 달라고 요청했습니다.</p>
+              <p>발사 이펙트를 미리 준비하면 달라지는지 보려고, 같은 씬과 무기에서 워밍업 유무만 바꿔 비교해 달라고 요청했습니다.</p>
               <dl class="asteroid-shot-results" aria-label="워밍업 비교 결과">
                 <div><dt>발사 함수</dt><dd>실행 시간이 짧아짐</dd></div>
                 <div><dt>발사 직후 화면</dt><dd>갱신 간격의 측정 범위가 겹침</dd></div>
               </dl>
             </li>
-            <li><h4>미사일·소행성 풀링 요청</h4><p>워밍업으로 끊김이 줄었는지는 확인하기 어려웠습니다. 전투 중 반복 생성되는 미사일과 소행성을 재사용하도록 요청했습니다.</p></li>
+            <li><h4>미사일·소행성 풀링 요청</h4><p>워밍업 비교만으로는 화면 끊김이 줄었다고 판단하기 어려웠습니다. 이어 전투 중 생성 부담을 줄이기 위해 미사일과 소행성 풀링을 요청했습니다.</p></li>
           </ol>
-          <p class="asteroid-case-verification"><strong>검증</strong><span>Codex가 풀링을 구현했습니다. Unity 에디터에서 비교한 결과, 미사일과 소행성을 새로 생성할 때보다 풀에서 꺼낼 때 호출 시간이 짧았습니다.</span></p>
+          <p class="asteroid-case-verification"><strong>검증 결과</strong><span>Unity 에디터에서 같은 프리팹을 새로 생성하는 경우와 풀에서 꺼내는 경우를 비교했습니다. 미사일과 얼음 소행성 모두, 풀에서 꺼내는 데 걸리는 시간이 더 짧았습니다.</span></p>
         </article>
         <article class="asteroid-spawn-case">
           <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>
@@ -199,13 +199,14 @@
           </div>
           <div class="asteroid-case-body">
             <dl class="asteroid-case-steps">
-              <div><dt>발견</dt><dd>일반 웨이브를 플레이하다가 소행성이 한동안 거의 나오지 않는 구간을 발견했습니다.</dd></div>
-              <div><dt>수정 방향</dt><dd>총 생성 예산은 그대로 두고, 비용이 큰 소행성에 쓸 몫을 따로 모으기로 했습니다.</dd></div>
+              <div><dt>발견</dt><dd>플레이 중 소행성이 한동안 거의 나오지 않았고, 그 공백이 일반 웨이브에서 생긴다는 점을 짚었습니다.</dd></div>
+              <div><dt>수정 방향</dt><dd>전체 생성 예산을 늘리지 않고도 일반 소행성이 계속 나오도록, 비용이 큰 소행성에 쓸 예산을 따로 모으는 방안을 택했습니다.</dd></div>
             </dl>
-            <p class="asteroid-case-verification"><strong>검증</strong><span>Codex가 생성 로직을 수정한 뒤, 10분 분량의 생성 시뮬레이션을 돌리고 Unity에서 컴파일되는 것을 확인했습니다.</span></p>
+            <p class="asteroid-case-verification"><strong>검증 결과</strong><span>10분 분량의 생성 시뮬레이션에서 비용이 큰 후보를 기다리는 동안에도 일반 소행성이 계속 생성됐습니다. 수정한 코드는 Unity 컴파일을 통과했습니다.</span></p>
           </div>
         </article>
       </div>
+      <p class="asteroid-case-credit">두 사례의 코드 수정과 검증에는 Codex를 활용했습니다.</p>
     </div>
   </section>
 </div>

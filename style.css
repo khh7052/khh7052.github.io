@@ -130,6 +130,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-case-steps,.asteroid-case-verification { font-size: 15px; color: #3d4541; }
 .asteroid-case-verification { margin-top: 12px; padding-top: 10px; border-top: 1px solid #e4d9c9; }
 .asteroid-case-verification strong { color: var(--case-heading); }
+.asteroid-case-credit { margin-top: 12px; color: var(--muted); font-size: 13px; }
 .asteroid-spawn-diagrams { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.3fr); gap: 12px; }
 .asteroid-spawn-diagram { --spawn-line: #73918e; min-width: 0; padding: clamp(12px,2vw,22px); border-radius: 10px; background: #edf5f2; }
 .asteroid-spawn-before { --spawn-line: #ac8778; background: #f8ede6; }
