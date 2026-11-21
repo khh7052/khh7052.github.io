@@ -172,3 +172,4 @@ nav{font-size:13px;gap:13px}
 .combat-notes dt,.combat-notes dd{margin:0;padding:14px 0;border-top:1px solid #cbd1c8}
 .combat-notes dt{font-weight:750}
 @media(max-width:650px){.case-gallery{grid-template-columns:1fr;gap:16px}.combat-notes{grid-template-columns:1fr}.combat-notes dt{padding-bottom:0}.combat-notes dd{padding-top:5px;border:0}}
+.rule-preview span{text-align:center;line-height:1.5}.rule-preview b{font-size:24px;color:#ffdb72}.rule-preview span img{width:24px;height:auto}

@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 첫 발사 끊김을 발견하고 워밍업을 비교한 뒤 풀링 범위를 정한 과정을 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=case-gallery">
+<link rel="stylesheet" href="style.css?v=combat-rules">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -29,16 +29,16 @@
 <a href="#earthquake-vr"><img src="earthquake-vr.webp" alt="" width="320" height="180"><strong lang="en">Survival Earthquake in VR</strong><span>VR 상호작용 · 멀티플레이 · 체험 장치 연동</span></a>
 </nav></div></section>
 <section class="case wrap" id="case"><p class="eyebrow ink"><i></i> Asteroid Alert <span>/</span> 개발 사례</p>
-<h2>플레이 화면에서 발견한 문제들</h2>
+<h2>전투 규칙이 어긋난 두 순간</h2>
 <div class="case-gallery">
-<article><figure class="rotation-demo" aria-label="같은 방향으로 이동하는 소행성의 초기 각도 예시">
-<div aria-hidden="true"><img src="rubble.webp" alt=""><img src="rubble.webp" alt=""><img src="rubble.webp" alt=""></div>
-<figcaption>같은 이동 방향 → 서로 다른 초기 각도</figcaption></figure>
-<h3>소행성이 같은 각도로 나타났습니다</h3>
-<p>생성 각도가 무작위로 보이지 않아 원인 확인을 요청했습니다. Codex가 이동 방향과 초기 회전을 분리했고, 같은 방향으로 생성한 12개 표본에서 각도가 달라졌습니다.</p></article>
-<article><figure class="camera-demo"><div aria-hidden="true"><i></i></div><figcaption>보스 카메라 구도 · 중앙은 낮은 대비로</figcaption></figure>
-<h3>보스전 배경을 게임 카메라로 다시 봤습니다</h3>
-<p>시안의 장식이 어색해 실제 화면으로 확인을 요청했습니다. 어둠에 묻힌 성운은 밝히고 눈에 띄던 하단 띠는 낮췄습니다. Codex가 수정본을 적용하고 보스 카메라 화면 전체가 채워지는지 확인했습니다.</p></article>
+<article><figure class="camera-demo"><div class="rule-preview"><span>일반 최종 증강<br><b>6칸 유지</b></span><span>은하수 최종 증강<br><b>6 → 9칸</b></span></div><figcaption>최종 증강 선택 후 보유할 수 있는 증강 계열 수</figcaption></figure>
+<h3>다른 최종 증강에도 은하수의 보상이 붙었습니다</h3>
+<p>어떤 최종 증강을 골라도 선택 한도가 6칸에서 9칸으로 늘어났습니다. 은하수를 고를 이유가 하나 사라지는 문제였습니다.</p>
+<p>슬롯 확장 여부를 증강 데이터에 따로 두고 은하수만 켰습니다. 각 최종 증강을 획득한 뒤 실제 선택 한도와 HUD 칸 수가 일치하는지, 새 게임에서 6칸으로 돌아오는지를 검사하는 테스트도 추가했습니다.</p></article>
+<article><figure class="rotation-demo"><div class="rule-preview"><img src="rubble.webp" alt=""><span>격파 →</span><span aria-label="파편"><img src="rubble.webp" alt="" width="24"><img src="rubble.webp" alt="" width="24"><img src="rubble.webp" alt="" width="24"></span></div><figcaption>군집 소행성의 격파 규칙을 나타낸 모식도</figcaption></figure>
+<h3>작은 군집 소행성은 격파해도 분열하지 않았습니다</h3>
+<p>같은 군집형을 쐈는데도 작은 개체는 그대로 사라졌습니다. 피해로 파괴된 뒤에도 초기 크기가 기준값 이하면 파편 생성 전에 처리가 끝났습니다.</p>
+<p>분열을 막던 크기 조건을 제거했습니다. 이제 플레이어는 군집형을 격파하면 크기에 관계없이 뒤이어 나오는 파편에 대응해야 합니다.</p></article>
 </div>
 <h2>전투 중 확인한 세 가지 현상</h2>
 <dl class="combat-notes">
