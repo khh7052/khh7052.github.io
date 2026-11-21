@@ -77,7 +77,6 @@
       <div class="asteroid-technical-details">
         <article><h3>Physics2D 기반 폭발 판정</h3><p>충돌 시 직격 피해를 적용한 뒤, 폭발형 미사일은 <code>Physics2D.OverlapCircle</code>로 명중 지점 주변의 소행성을 찾아 범위 피해를 처리합니다. 관통 강화가 적용된 미사일은 남은 관통 횟수에 따라 계속 이동합니다.</p></article>
         <article><h3>연구 카드 데이터와 효과 적용</h3><p>카드의 능력치 변경, 외형 변경, 특수 효과를 ScriptableObject에 정의합니다. 카드 선택 시 공통 적용 코드가 각 변경을 처리하고, 다음 미사일을 발사할 때 현재 피해량·관통 횟수·폭발 반경과 외형을 읽어 반영합니다.</p></article>
-        <article><h3>Unity Gaming Services 기반 랭킹</h3><p><strong>Authentication</strong>으로 익명 로그인하고, <strong>Cloud Code</strong>를 통해 클리어 기록을 제출하며, <strong>Leaderboards</strong>에서 순위를 조회합니다. 전송하지 못한 점수는 로컬에 보관해 랭킹 조회 시 재시도하고, 서버가 확인한 점수만 전송 대기에서 해제합니다.</p></article>
         <article><h3>Unity Input System 기반 조준</h3><p>PC에서는 마우스 좌표를, 모바일에서는 <strong>Enhanced Touch</strong>로 추적한 손가락 좌표를 조준에 씁니다. 전투 화면에서 시작한 손가락 하나를 조준에 할당하고, UI에서 시작한 터치나 연구 화면에서부터 누른 채 유지한 터치는 발사 입력에서 제외합니다.</p></article>
         <article><h3>Unity Localization 기반 한·영 전환</h3><p>설정에서 언어를 고르면 <code>SelectedLocaleChanged</code>에 맞춰 도감과 연구 슬롯의 문구를 갱신합니다. 적용을 눌렀을 때만 <strong>PlayerPrefs</strong>에 언어를 저장하고, 적용 없이 설정을 닫으면 열기 전 언어로 돌아갑니다.</p></article>
       </div>
@@ -90,6 +89,15 @@
           <li><strong>종료 결과를 연결합니다</strong><span>승리·패배·중도 종료와 그 사유를 같은 플레이 ID에 연결해, 어느 웨이브까지 진행했고 어떤 선택을 했는지 확인할 수 있게 했습니다.</span></li>
         </ol>
         <p class="asteroid-process-note">수집에 동의한 플레이만 전송하며, 테스트 플레이는 집계 대상에서 제외합니다.</p>
+      </article>
+      <article class="asteroid-technical-process">
+        <h3 id="asteroid-ranking-title">Unity Gaming Services 기반 랭킹</h3>
+        <ol class="asteroid-process-flow">
+          <li><strong>클리어 기록을 로컬에 저장합니다</strong><span>플레이 결과를 먼저 기기에 저장하고, 랭킹에 올릴 새 기록은 전송 대기로 남깁니다.</span></li>
+          <li><strong>익명 인증 후 기록을 제출합니다</strong><span>Unity Authentication으로 익명 로그인해 플레이어를 식별합니다. Cloud Code에는 클리어 점수와 해당 플레이의 상세 정보를 보냅니다.</span></li>
+          <li><strong>서버 응답을 확인하고 순위를 조회합니다</strong><span>서버가 확인한 점수와 현재 대기 중인 점수가 일치할 때만 전송 대기를 해제합니다. Leaderboards에서 순위 목록과 내 순위를 불러옵니다.</span></li>
+        </ol>
+        <p class="asteroid-process-note">전송에 실패하면 기록을 로컬에 남겨 다음 랭킹 조회 때 다시 시도합니다. 전송 도중 더 좋은 점수가 저장되면 이전 요청의 응답이 새 점수의 대기 상태를 해제하지 않습니다.</p>
       </article>
     </div>
   </section>
