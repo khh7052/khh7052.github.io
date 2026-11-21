@@ -61,7 +61,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-orbit-planet { display: block; width: 62%; height: auto; filter: drop-shadow(0 12px 18px #59322032); }
 .asteroid-orbit-rock { position: absolute; z-index: 1; top: 12%; right: 7%; width: 12%; height: auto; transform: rotate(14deg); }
 .asteroid-systems { padding-block: clamp(30px,5vw,62px); background: radial-gradient(ellipse at 85% 10%,#233958 0,transparent 60%),var(--orbit-night); color: #fff8ef; }
-.asteroid-systems h2,.asteroid-problems h2 { font-size: clamp(28px,3.5vw,46px); }
+.asteroid-systems h2,.asteroid-technical h2,.asteroid-problems h2 { font-size: clamp(28px,3.5vw,46px); }
 .asteroid-implementation-media { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(14px,2.4vw,30px); margin-top: clamp(18px,2.5vw,30px); }
 .asteroid-implementation-media > figure,.asteroid-combat-card { min-width: 0; overflow: hidden; border: 1px solid #52617a; border-radius: 14px; background: #172337; }
 .asteroid-implementation-media img { display: block; width: 100%; height: auto; background: #080f1c; }
@@ -70,11 +70,21 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-combat-shots figure { position: relative; }
 .asteroid-combat-shots img { aspect-ratio: 8/9; object-fit: cover; }
 .asteroid-combat-shots figcaption { position: absolute; top: 8px; left: 8px; padding: 2px 8px; border-radius: 4px; background: #0b1425; color: #fff8ef; font-weight: 700; }
-.asteroid-implementation-media h3,.asteroid-wave h3,.asteroid-problem-cases h3 { font-size: clamp(18px,2vw,24px); }
+.asteroid-implementation-media h3,.asteroid-technical h3,.asteroid-problem-cases h3 { font-size: clamp(18px,2vw,24px); }
 .asteroid-implementation-media h3 { color: var(--accent); }
-.asteroid-implementation-media p,.asteroid-wave p { margin-top: 6px; color: #d5deea; font-size: 15px; }
-.asteroid-wave { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,2fr); gap: 6px 20px; align-items: baseline; margin-top: 18px; padding: 14px clamp(14px,2vw,24px); border-left: 3px solid #86c8d0; background: #1e2f46; }
-.asteroid-wave p { margin: 0; }
+.asteroid-implementation-media p { margin-top: 6px; color: #d5deea; font-size: 15px; }
+.asteroid-technical { padding-block: clamp(28px,4.5vw,56px); background: #e5efed; border-bottom: 1px solid #c4d9d5; }
+.asteroid-spawn { margin-top: clamp(14px,2vw,22px); padding: clamp(16px,2.3vw,28px); border: 1px solid #bbd3cf; border-radius: 12px; background: #f5fbf9; }
+.asteroid-technical p,.asteroid-spawn-flow span { color: #384b48; font-size: 15px; }
+.asteroid-technical p { margin-top: 8px; }
+.asteroid-spawn-flow,.asteroid-technical-details { display: grid; gap: clamp(12px,2vw,24px); }
+.asteroid-spawn-flow { grid-template-columns: repeat(3,minmax(0,1fr)); margin: 18px 0 0; padding-left: 1.25em; }
+.asteroid-spawn-flow li::marker { color: #276469; font-weight: 750; }
+.asteroid-spawn-flow strong,.asteroid-spawn-flow span { display: block; }
+.asteroid-spawn-flow span { margin-top: 4px; }
+.asteroid-technical .asteroid-spawn-note { margin-top: 16px; padding-top: 12px; border-top: 1px solid #bbd3cf; }
+.asteroid-technical-details { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 18px; }
+.asteroid-technical-details article { padding: 12px clamp(12px,1.8vw,22px); border-left: 3px solid #337584; }
 .asteroid-problems { padding-block: clamp(28px,4.5vw,56px); background: #fffaf2; border-bottom: 1px solid #e4d9c9; }
 .asteroid-problem-cases { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(14px,2.5vw,32px); margin-top: clamp(16px,2vw,24px); }
 .asteroid-problem-cases article { padding: clamp(16px,2.2vw,30px); border-top: 4px solid #b9583d; border-radius: 0 0 12px 12px; background: #f5e6d8; }
@@ -174,7 +184,7 @@ body:has(.project-dialog[open]) { overflow: hidden; }
   .name span { display: none; }
   .hero-grid,.projects article { display: flex; flex-direction: column; align-items: stretch; }
   .hero-grid { padding-block: 20px; gap: 18px; }
-  .asteroid-overview-grid,.asteroid-implementation-media,.asteroid-wave,.asteroid-problem-cases { grid-template-columns: 1fr; }
+  .asteroid-overview-grid,.asteroid-implementation-media,.asteroid-spawn-flow,.asteroid-technical-details,.asteroid-problem-cases { grid-template-columns: 1fr; }
   .asteroid-overview-grid { gap: 12px; }
   .asteroid-orbit { width: min(74%,290px); }
   h1 img { width: min(62%,260px); margin-block: 9px; }
