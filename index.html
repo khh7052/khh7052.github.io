@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-implementation-flows">
+<link rel="stylesheet" href="style.css?v=asteroid-technical-accordion">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -64,68 +64,103 @@
   <section class="asteroid-technical" aria-labelledby="asteroid-technical-title">
     <div class="wrap">
       <h2 id="asteroid-technical-title">기술적 구현</h2>
-      <article class="asteroid-technical-process">
-        <h3>웨이브와 소행성 생성</h3>
-        <p>웨이브가 바뀌면 등장 가능한 소행성 종류와 생성 강도를 갱신합니다. 웨이브 중에는 아래 순서로 다음에 생성할 소행성을 결정합니다.</p>
-        <ol class="asteroid-process-flow" role="list">
-          <li><strong>예산을 쌓습니다</strong><span>시간에 따라 예산을 적립합니다. 일반 소행성과 생성 비용이 큰 소행성의 예산은 따로 쌓습니다.</span></li>
-          <li><strong>가중치로 후보를 뽑습니다</strong><span>등장 가중치가 높은 유형일수록 뽑힐 확률이 큽니다. 비용이 큰 후보는 자기 몫의 예산이 찰 때까지 대기합니다.</span></li>
-          <li><strong>생성한 뒤 비용을 차감합니다</strong><span>위치를 확보하고 실제로 소행성을 생성한 경우에만 해당 비용을 예산에서 뺍니다.</span></li>
-        </ol>
-        <p class="asteroid-process-note"><strong>추첨 기준</strong><span>일반 소행성은 그 그룹에서 가장 비싼 유형까지 생성할 수 있을 때 추첨합니다. 가장 싼 유형만 계속 생성되는 것을 막기 위해서입니다.</span></p>
-      </article>
-      <article class="asteroid-technical-process">
-        <h3 id="asteroid-analytics-title">Unity Analytics 기반 플레이 흐름 분석</h3>
-        <p>시작 행성부터 웨이브 진행, 연구 선택, 보스전, 한 판의 종료까지 주요 게임 이벤트를 수집합니다.</p>
-        <ol class="asteroid-process-flow" role="list">
-          <li><strong>플레이를 시작합니다</strong><span>한 판마다 플레이 ID를 만들고, 시작 행성과 각 이벤트의 웨이브 번호와 경과 시간을 함께 기록합니다.</span></li>
-          <li><strong>진행과 선택을 기록합니다</strong><span>웨이브 시작·완료, 보스전 시작·결과, 연구 카드의 노출·선택을 기록합니다. 연구에서 다시 뽑거나 건너뛴 경우도 같은 제안 ID로 연결합니다.</span></li>
-          <li><strong>종료 결과를 연결합니다</strong><span>승리·패배·중도 종료와 그 사유를 같은 플레이 ID에 연결해, 어느 웨이브까지 진행했고 어떤 선택을 했는지 확인할 수 있게 했습니다.</span></li>
-        </ol>
-        <p class="asteroid-process-note"><strong>수집 범위</strong><span>수집에 동의한 플레이만 전송하며, 테스트 플레이는 집계 대상에서 제외합니다.</span></p>
-      </article>
-      <article class="asteroid-technical-process">
-        <h3 id="asteroid-ranking-title">Unity Gaming Services 기반 랭킹</h3>
-        <ol class="asteroid-process-flow" role="list">
-          <li><strong>클리어 기록을 로컬에 저장</strong><span>플레이 결과를 먼저 기기에 저장하고, 랭킹에 올릴 새 기록은 전송 대기로 남깁니다.</span></li>
-          <li><strong>익명 인증과 기록 제출</strong><span><strong>Unity Authentication</strong>으로 익명 로그인해 플레이어를 식별합니다. <strong>Cloud Code</strong>로 클리어 점수와 플레이 상세 정보를 보냅니다.</span></li>
-          <li><strong>응답 확인과 순위 조회</strong><span>서버가 확인한 점수와 현재 대기 중인 점수가 일치할 때 대기를 해제합니다. <strong>Leaderboards</strong>에서 순위 목록과 내 순위를 불러옵니다.</span></li>
-        </ol>
-        <p class="asteroid-process-note"><strong>전송 실패 시</strong><span>기록을 기기에 남겨 다음 랭킹 조회 때 다시 시도합니다. 전송 중 더 좋은 점수가 저장돼도 이전 응답이 새 기록의 대기 상태를 해제하지 않습니다.</span></p>
-      </article>
-      <div class="asteroid-technical-details" id="asteroid-technical-details">
-        <article>
-          <h3>Physics2D 기반 미사일 판정</h3>
-          <ol class="asteroid-detail-flow" role="list">
-            <li><strong>직격 피해</strong><span>미사일이 맞힌 소행성에 피해를 먼저 적용합니다.</span></li>
-            <li><strong>폭발 범위 판정</strong><span>폭발형 미사일은 <code>Physics2D.OverlapCircle</code>로 명중 지점 주변의 소행성을 찾아 범위 피해를 줍니다.</span></li>
-            <li><strong>관통 여부 결정</strong><span>이번 충돌에 쓸 관통 횟수가 있으면 계속 날아가고, 없으면 미사일을 회수합니다.</span></li>
-          </ol>
-        </article>
-        <article>
-          <h3>연구 카드 데이터와 효과 적용</h3>
-          <ol class="asteroid-detail-flow" role="list">
-            <li><strong>카드별 변경 정의</strong><span><code>ScriptableObject</code>에 능력치·외형 변경과 특수 효과를 설정합니다.</span></li>
-            <li><strong>선택한 카드 적용</strong><span>공통 적용 코드가 현재 능력치와 외형을 갱신하고 특수 효과를 실행합니다.</span></li>
-            <li><strong>다음 발사에 반영</strong><span>미사일 발사 시 갱신된 피해량·관통 횟수·폭발 반경과 외형을 읽습니다.</span></li>
-          </ol>
-        </article>
-        <article>
-          <h3>Unity Input System 기반 조준</h3>
-          <ol class="asteroid-detail-flow" role="list">
-            <li><strong>입력 좌표 읽기</strong><span>PC에서는 마우스 좌표를, 모바일에서는 <strong>Enhanced Touch</strong>로 손가락 좌표를 읽습니다.</span></li>
-            <li><strong>조준할 터치 지정</strong><span>전투 화면에서 시작한 손가락 하나만 조준에 사용합니다. UI에서 시작한 터치는 제외합니다.</span></li>
-            <li><strong>조준 해제</strong><span>손을 떼거나 게임 상태가 바뀌면 조준을 해제합니다. 연구 화면에서 누른 채 전투로 돌아와도 새 터치 전까지 발사하지 않습니다.</span></li>
-          </ol>
-        </article>
-        <article>
-          <h3>Unity Localization 기반 한·영 전환</h3>
-          <ol class="asteroid-detail-flow" role="list">
-            <li><strong>언어 미리 보기</strong><span>설정에서 한·영을 고르면 현재 로캘을 바꿉니다.</span></li>
-            <li><strong>화면 문구 갱신</strong><span><code>SelectedLocaleChanged</code> 이벤트에 맞춰 도감과 연구 슬롯 문구를 갱신합니다.</span></li>
-            <li><strong>적용 여부 확인</strong><span>적용하면 <code>PlayerPrefs</code>에 저장하고, 적용 없이 닫으면 설정을 열기 전 언어로 돌립니다.</span></li>
-          </ol>
-        </article>
+      <div class="asteroid-accordion">
+        <details class="asteroid-disclosure">
+          <summary>
+            <span class="asteroid-disclosure-title">웨이브와 소행성 생성</span>
+            <span class="asteroid-disclosure-summary">웨이브마다 등장 후보를 갱신하고, 가중치와 생성 예산으로 다음 소행성을 결정합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <p>웨이브가 바뀌면 등장 가능한 소행성 종류와 생성 강도를 갱신합니다. 웨이브 중에는 아래 순서로 다음에 생성할 소행성을 결정합니다.</p>
+            <ol class="asteroid-process-flow" role="list">
+              <li><strong>예산을 쌓습니다</strong><span>시간에 따라 예산을 적립합니다. 일반 소행성과 생성 비용이 큰 소행성의 예산은 따로 쌓습니다.</span></li>
+              <li><strong>가중치로 후보를 뽑습니다</strong><span>등장 가중치가 높은 유형일수록 뽑힐 확률이 큽니다. 비용이 큰 후보는 자기 몫의 예산이 찰 때까지 대기합니다.</span></li>
+              <li><strong>생성한 뒤 비용을 차감합니다</strong><span>위치를 확보하고 실제로 소행성을 생성한 경우에만 해당 비용을 예산에서 뺍니다.</span></li>
+            </ol>
+            <p class="asteroid-process-note"><strong>추첨 기준</strong><span>일반 소행성은 그 그룹에서 가장 비싼 유형까지 생성할 수 있을 때 추첨합니다. 가장 싼 유형만 계속 생성되는 것을 막기 위해서입니다.</span></p>
+          </div>
+        </details>
+        <details class="asteroid-disclosure">
+          <summary id="asteroid-analytics-title">
+            <span class="asteroid-disclosure-title">Unity Analytics 기반 플레이 흐름 분석</span>
+            <span class="asteroid-disclosure-summary">시작 행성부터 보스전·종료 결과까지 한 판의 이벤트를 플레이 ID로 연결합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <p>시작 행성부터 웨이브 진행, 연구 선택, 보스전, 한 판의 종료까지 주요 게임 이벤트를 수집합니다.</p>
+            <ol class="asteroid-process-flow" role="list">
+              <li><strong>플레이를 시작합니다</strong><span>한 판마다 플레이 ID를 만들고, 시작 행성과 각 이벤트의 웨이브 번호와 경과 시간을 함께 기록합니다.</span></li>
+              <li><strong>진행과 선택을 기록합니다</strong><span>웨이브 시작·완료, 보스전 시작·결과, 연구 카드의 노출·선택을 기록합니다. 연구에서 다시 뽑거나 건너뛴 경우도 같은 제안 ID로 연결합니다.</span></li>
+              <li><strong>종료 결과를 연결합니다</strong><span>승리·패배·중도 종료와 그 사유를 같은 플레이 ID에 연결해, 어느 웨이브까지 진행했고 어떤 선택을 했는지 확인할 수 있게 했습니다.</span></li>
+            </ol>
+            <p class="asteroid-process-note"><strong>수집 범위</strong><span>수집에 동의한 플레이만 전송하며, 테스트 플레이는 집계 대상에서 제외합니다.</span></p>
+          </div>
+        </details>
+        <details class="asteroid-disclosure">
+          <summary id="asteroid-ranking-title">
+            <span class="asteroid-disclosure-title">Unity Gaming Services 기반 랭킹</span>
+            <span class="asteroid-disclosure-summary">클리어 기록을 기기에 저장한 뒤 인증·제출·순위 조회를 처리합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <ol class="asteroid-process-flow" role="list">
+              <li><strong>클리어 기록을 로컬에 저장</strong><span>플레이 결과를 먼저 기기에 저장하고, 랭킹에 올릴 새 기록은 전송 대기로 남깁니다.</span></li>
+              <li><strong>익명 인증과 기록 제출</strong><span><strong>Unity Authentication</strong>으로 익명 로그인해 플레이어를 식별합니다. <strong>Cloud Code</strong>로 클리어 점수와 플레이 상세 정보를 보냅니다.</span></li>
+              <li><strong>응답 확인과 순위 조회</strong><span>서버가 확인한 점수와 현재 대기 중인 점수가 일치할 때 대기를 해제합니다. <strong>Leaderboards</strong>에서 순위 목록과 내 순위를 불러옵니다.</span></li>
+            </ol>
+            <p class="asteroid-process-note"><strong>전송 실패 시</strong><span>기록을 기기에 남겨 다음 랭킹 조회 때 다시 시도합니다. 전송 중 더 좋은 점수가 저장돼도 이전 응답이 새 기록의 대기 상태를 해제하지 않습니다.</span></p>
+          </div>
+        </details>
+        <details class="asteroid-disclosure">
+          <summary id="asteroid-technical-details">
+            <span class="asteroid-disclosure-title">Physics2D 기반 미사일 판정</span>
+            <span class="asteroid-disclosure-summary">직격 피해를 먼저 적용하고, 강화에 따라 범위 피해와 관통을 처리합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <ol class="asteroid-detail-flow" role="list">
+              <li><strong>직격 피해</strong><span>미사일이 맞힌 소행성에 피해를 먼저 적용합니다.</span></li>
+              <li><strong>폭발 범위 판정</strong><span>폭발형 미사일은 <code>Physics2D.OverlapCircle</code>로 명중 지점 주변의 소행성을 찾아 범위 피해를 줍니다.</span></li>
+              <li><strong>관통 여부 결정</strong><span>이번 충돌에 쓸 관통 횟수가 있으면 계속 날아가고, 없으면 미사일을 회수합니다.</span></li>
+            </ol>
+          </div>
+        </details>
+        <details class="asteroid-disclosure">
+          <summary>
+            <span class="asteroid-disclosure-title">연구 카드 데이터와 효과 적용</span>
+            <span class="asteroid-disclosure-summary">선택한 카드의 능력치·외형·특수 효과를 플레이에 적용합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <ol class="asteroid-detail-flow" role="list">
+              <li><strong>카드별 변경 정의</strong><span><code>ScriptableObject</code>에 능력치·외형 변경과 특수 효과를 설정합니다.</span></li>
+              <li><strong>선택한 카드 적용</strong><span>공통 적용 코드가 현재 능력치와 외형을 갱신하고 특수 효과를 실행합니다.</span></li>
+              <li><strong>다음 발사에 반영</strong><span>미사일 발사 시 갱신된 피해량·관통 횟수·폭발 반경과 외형을 읽습니다.</span></li>
+            </ol>
+          </div>
+        </details>
+        <details class="asteroid-disclosure">
+          <summary>
+            <span class="asteroid-disclosure-title">Unity Input System 기반 조준</span>
+            <span class="asteroid-disclosure-summary">마우스와 터치로 조준하며, 메뉴를 누른 손가락은 발사에서 제외합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <ol class="asteroid-detail-flow" role="list">
+              <li><strong>입력 좌표 읽기</strong><span>PC에서는 마우스 좌표를, 모바일에서는 <strong>Enhanced Touch</strong>로 손가락 좌표를 읽습니다.</span></li>
+              <li><strong>조준할 터치 지정</strong><span>전투 화면에서 시작한 손가락 하나만 조준에 사용합니다. UI에서 시작한 터치는 제외합니다.</span></li>
+              <li><strong>조준 해제</strong><span>손을 떼거나 게임 상태가 바뀌면 조준을 해제합니다. 연구 화면에서 누른 채 전투로 돌아와도 새 터치 전까지 발사하지 않습니다.</span></li>
+            </ol>
+          </div>
+        </details>
+        <details class="asteroid-disclosure">
+          <summary>
+            <span class="asteroid-disclosure-title">Unity Localization 기반 한·영 전환</span>
+            <span class="asteroid-disclosure-summary">언어 변경을 바로 미리 보고, 적용한 경우에만 설정을 저장합니다.</span>
+          </summary>
+          <div class="asteroid-disclosure-body">
+            <ol class="asteroid-detail-flow" role="list">
+              <li><strong>언어 미리 보기</strong><span>설정에서 한·영을 고르면 현재 로캘을 바꿉니다.</span></li>
+              <li><strong>화면 문구 갱신</strong><span><code>SelectedLocaleChanged</code> 이벤트에 맞춰 도감과 연구 슬롯 문구를 갱신합니다.</span></li>
+              <li><strong>적용 여부 확인</strong><span>적용하면 <code>PlayerPrefs</code>에 저장하고, 적용 없이 닫으면 설정을 열기 전 언어로 돌립니다.</span></li>
+            </ol>
+          </div>
+        </details>
       </div>
     </div>
   </section>
