@@ -124,3 +124,17 @@ nav{font-size:13px;gap:13px}
 .project-index a:hover strong,.project-index a:focus-visible strong{text-decoration:underline}
 .projects article[id]{scroll-margin-top:80px}
 @media(max-width:640px){.project-index{grid-template-columns:1fr;gap:0}}
+
+.hero{background:linear-gradient(100deg,rgba(5,10,19,.98) 15%,rgba(7,14,29,.93) 48%,rgba(13,14,29,.76)),url(combat.webp) center/cover}
+.hero-grid{width:min(1440px,92%);grid-template-columns:minmax(280px,.8fr) minmax(0,1.55fr);gap:5%;padding-block:clamp(36px,4vw,72px)}
+.hero h1 img{width:min(100%,430px)}
+.movie video{border-radius:14px;border-color:#73778a;box-shadow:0 20px 54px #0007}
+.work-overview{background:#eae8de;padding:28px 0 32px}
+.work-overview h2{margin:0 0 14px;font-size:clamp(24px,2.4vw,36px)}
+.work-overview .project-index{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:0}
+.work-overview .project-index a{display:flex;flex-direction:column;gap:0;overflow:hidden;background:#fffdf6;border:1px solid #cfcec2;border-radius:9px;padding:0 0 14px}
+.project-index img{display:block;width:100%;height:auto;aspect-ratio:3/1;object-fit:cover}
+.work-overview .project-index strong{margin:10px 12px 3px;line-height:1.25}
+.work-overview .project-index span{margin:0 12px}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr}.hero h1 img{width:min(70%,340px)}.work-overview .project-index{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.work-overview .project-index{gap:8px}.work-overview .project-index strong,.work-overview .project-index span{margin-inline:9px}.work-overview .project-index span{font-size:13px}}
