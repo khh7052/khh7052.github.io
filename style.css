@@ -87,6 +87,11 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-heading .project-period { margin-inline: 0; opacity: 1; }
 .team-role { color: var(--ink); }
 .project-copy h2 { margin-bottom: 8px; font-size: clamp(19px,1.6vw,24px); }
+.project-contributions { margin: 0; }
+.project-contributions > div { padding-block: 9px 11px; }
+.project-contributions > div + div { border-top: 1px solid var(--line); }
+.project-contributions dt { font-weight: 700; line-height: 1.4; }
+.project-contributions dd { margin: 3px 0 0; color: #40473f; }
 .project-dialog { width: min(1120px,calc(100% - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: #fffef9; overscroll-behavior: contain; box-shadow: 0 20px 64px rgb(10 15 18 / 30%); }
 .project-dialog,.project-dialog::backdrop { opacity: 1; transition: opacity 180ms ease; }
 .project-dialog::backdrop { background: rgb(15 20 22 / 72%); }

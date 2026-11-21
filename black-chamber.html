@@ -7,14 +7,14 @@
 <meta name="description" content="Black Chamber에서 김혜현이 맡은 역할과 구현을 소개합니다.">
 <title>Black Chamber — 김혜현</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=intro-paragraphs">
+<link rel="stylesheet" href="style.css?v=project-contributions">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
-<header><div class="wrap head"><a class="name" href="./?v=intro-paragraphs">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="./?v=intro-paragraphs#projects">팀 프로젝트</a><a href="#contact">연락처</a></nav></div></header>
+<header><div class="wrap head"><a class="name" href="./?v=project-contributions">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="./?v=project-contributions#projects">팀 프로젝트</a><a href="#contact">연락처</a></nav></div></header>
 <main class="other" id="work">
 <div class="wrap">
-<a class="project-back" href="./?v=intro-paragraphs#projects">← 팀 프로젝트</a>
+<a class="project-back" href="./?v=project-contributions#projects">← 팀 프로젝트</a>
 <div class="projects project-detail">
 <article id="black-chamber"><div class="project-heading"><div class="project-title"><h1 lang="en">Black Chamber</h1></div>
 <p class="meta">7인 팀 · Unity <span class="project-period"><span aria-hidden="true">/</span> 개발 기간 2025.09 ~ 2025.11</span> <strong class="team-role"><span aria-hidden="true">/</span> 적 AI · 데이터 연동</strong></p>
@@ -26,9 +26,17 @@
   <p>내일배움캠프(유니티 11기)에서 개발한 최종 팀 프로젝트.</p>
   <p>플레이어는 적들에게 들키지 않고 타겟을 암살하거나, 상황에 따라 전투 모드로 전환하여 정면 돌파할 수 있습니다. 스텔스와 액션의 균형을 통해 다양한 플레이 스타일과 스테이지 및 무기를 제공합니다.</p>
 </div>
-<h2>벽을 돌아 들리는 총성까지 계산하는 적 AI</h2>
-<p class="team-method">한 발의 총성에 대해 직선 경로와 벽을 우회하는 경로의 소리 세기를 각각 계산했습니다. 우회 경로의 길이는 NavMesh로 구했습니다. 두 값 중 큰 값을 적의 청각 기준과 비교하고, 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</p>
-<p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
+<h2>맡은 기능과 구현</h2>
+<dl class="project-contributions">
+  <div>
+    <dt>적 AI · 총성 수색</dt>
+    <dd>직선과 NavMesh 우회 경로의 소리 세기 중 큰 값을 적의 청각 기준과 비교합니다. 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</dd>
+  </div>
+  <div>
+    <dt>적·무기 데이터 연동</dt>
+    <dd>기획자가 Google Sheets에서 조정한 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</dd>
+  </div>
+</dl>
 <div class="links">
 <a href="https://nextthewat.itch.io/black-chamber">게임 다운로드 (itch.io) ↗</a>
 <a href="https://github.com/NextTheWAT/2D_Black_Chamber">팀 GitHub 저장소 ↗</a>
