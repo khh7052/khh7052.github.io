@@ -71,12 +71,14 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .projects { margin-top: 24px; }
 .projects article { align-items: start; grid-template-areas: "heading heading" "media copy"; row-gap: 16px; padding-block: 32px; }
 .project-heading { grid-area: heading; }
-.project-heading h3 { font-size: clamp(28px,3vw,44px); margin-block: 4px; }
+.project-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; margin-bottom: 6px; }
+.project-title h1 { font-size: clamp(30px,4vw,54px); line-height: 1.15; letter-spacing: -.045em; }
+.project-heading .team-intro { margin-top: 8px; }
+.project-back { font-weight: 700; }
 .project-media { grid-area: media; }
 .project-copy { grid-area: copy; }
 .team-role { font-weight: 700; }
-.team-role b { display: inline-block; margin-right: 4px; border-bottom: 3px solid var(--accent); }
-.project-copy h4 { margin-block: 14px 8px; font-size: clamp(19px,1.6vw,24px); }
+.project-copy h2 { margin-bottom: 8px; font-size: clamp(19px,1.6vw,24px); }
 .links { flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: 14px; font-weight: 650; }
 .foot { justify-content: space-between; gap: 18px; padding-block: 38px; }
 .foot h2 { font-size: 30px; margin-block: 4px; }

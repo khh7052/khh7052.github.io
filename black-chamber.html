@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10191c">
+<meta name="description" content="Black Chamber에서 김혜현이 맡은 역할과 구현을 소개합니다.">
+<title>Black Chamber — 김혜현</title>
+<link rel="icon" href="icon.webp">
+<link rel="stylesheet" href="style.css?v=project-pages">
+</head>
+<body>
+<a class="skip" href="#work">본문으로 이동</a>
+<header><div class="wrap head"><a class="name" href="index.html">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="index.html#projects">작품 목록</a><a href="#contact">연락처</a></nav></div></header>
+<main class="other" id="work">
+<div class="wrap">
+<a class="project-back" href="index.html#projects">← 함께 만든 게임</a>
+<div class="projects project-detail">
+<article id="black-chamber"><div class="project-heading"><div class="project-title"><h1 lang="en">Black Chamber</h1><p class="team-role">적 AI · 데이터 연동</p></div>
+<p class="meta">7인 팀 · Unity <span>/</span> 개발 기간 2025.09 ~ 2025.11</p>
+<p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p></div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy">
+<h2>벽을 돌아 들리는 총성까지 계산하는 적 AI</h2>
+<p class="team-method">한 발의 총성에 대해 직선 경로와 벽을 우회하는 경로의 소리 세기를 각각 계산했습니다. 우회 경로의 길이는 NavMesh로 구했습니다. 두 값 중 큰 값을 적의 청각 기준과 비교하고, 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</p>
+<p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
+<div class="links">
+<a href="https://nextthewat.itch.io/black-chamber">게임 다운로드 (itch.io) ↗</a>
+<a href="https://github.com/NextTheWAT/2D_Black_Chamber">팀 GitHub 저장소 ↗</a>
+<a href="https://www.youtube.com/watch?v=OVt4j6ZTV6E">YouTube에서 보기 ↗</a></div></div></article>
+</div>
+</div>
+</main>
+<footer id="contact"><div class="wrap foot"><div><p class="eyebrow">연락처</p><h2>김혜현</h2><p>Unity 게임 클라이언트 개발자</p></div><div class="contact"><a href="mailto:khh7052@naver.com">khh7052@naver.com ↗</a><a href="https://github.com/khh7052">GitHub ↗</a></div></div></footer>
+</body></html>
