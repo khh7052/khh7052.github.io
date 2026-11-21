@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10191c">
-<meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 체력 표시와 보스 생성 위치를 디버깅한 과정, 전투 처리와 이미지 용량 최적화 사례를 소개합니다.">
+<meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 전투 중 적 생성 대기, 첫 메뉴 열기 지연, 강화 선택 이벤트 수집을 다룹니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=folio-2">
+<link rel="stylesheet" href="style.css?v=case-studies-3">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -29,16 +29,29 @@
 <a href="#earthquake-vr"><img src="earthquake-vr.webp" alt="" width="320" height="180"><strong lang="en">Survival Earthquake in VR</strong><span>VR 상호작용 · 멀티플레이 · 체험 장치 연동</span></a>
 </nav></div></section>
 <section class="case wrap" id="case"><p class="eyebrow ink"><i></i> Asteroid Alert <span>/</span> 개발 사례</p>
-<h2>클라이언트 디버깅</h2>
-<div class="case-gallery">
-<article><figure><img class="case-shot" src="planet-health-check.webp" width="1080" height="608" alt="수정 후 파괴 직전 행성에 0.5%, 화면 아래에 체력 0.01/2가 표시된 게임 화면" loading="lazy"><figcaption>수정 후 같은 순간의 두 표시 · 행성 위 0.5% / 하단 0.01/2</figcaption></figure><div class="case-copy"><h3>체력이 1%인데 왜 숫자는 1.01일까?</h3>
-<p>이 게임에서 행성은 피격될수록 작아지고 일정 크기에서 파괴됩니다. 플레이 중 행성 위에는 체력이 1%로 보이는데 하단에는 1.01이 남았다고 나왔습니다. 저는 하단 숫자에 파괴 시점의 크기까지 포함됐다고 보고, 체력과 관련된 표시를 전부 같은 기준으로 고쳐 달라고 요청했습니다.</p>
-<p><b>수정과 검수</b> Codex가 파괴 기준을 뺀 실제 잔량으로 숫자·체력바·백분율을 통일했습니다. 최대 체력, 절반, 파괴 직전, 파괴 순간을 검사했습니다. 내부 크기 1.01일 때 남은 체력은 0.01/2이고, 두 표시 모두 0.5%에 해당합니다.</p>
-</div></article>
-<article><figure><img class="case-shot" src="boss-zoom-check.webp" width="1080" height="608" alt="보스 등장 후 카메라가 뒤로 빠져 중앙 행성 주위의 넓은 전장이 보이는 검수 화면" loading="lazy"><figcaption>보스전 시야 확대 검수 · 당시 설정에서 등장 거리 9.5 → 17.1 유닛</figcaption></figure><div class="case-copy"><h3>보스가 화면이 넓어지기도 전에 가까이 나타났습니다</h3>
-<p>마지막 보스는 멀리서 행성으로 다가와야 했습니다. 저는 등장 순간을 보고 카메라가 아직 뒤로 빠지는 중인데 보스 위치를 먼저 정해, 좁은 시야의 가장자리에 생성된다는 점을 짚었습니다.</p>
-<p><b>수정과 검수</b> 등장 방향을 유지하고, 거리를 계산할 때에는 카메라 이동이 끝난 뒤의 화면 크기를 사용하도록 Codex가 수정했습니다. 실제 보스 생성부터 시야 확대, 전투 종료 후 원래 시점으로 복귀하는 과정까지 확인했습니다.</p>
-</div></article>
+<h2>클라이언트 개발 사례</h2>
+<div class="case-studies">
+<article>
+  <p class="domain">전투 · 적 생성</p>
+  <h3>전투 한가운데서 소행성이 뜸해졌다</h3>
+  <p>플레이 중 적이 드문 순간을 발견했고, <strong>일반 웨이브 도중</strong>이라고 짚었습니다. 조사 범위가 보스전 연출에서 평소 적 생성 순서로 좁혀졌습니다.</p>
+  <img src="midgame-test.webp" width="1080" height="608" loading="lazy" alt="행성을 향해 소행성이 날아오는 일반 전투 화면">
+  <details><summary>비용이 큰 적의 생성 예산 분리</summary><p>코드를 살펴보니 다음 적 한 종류를 먼저 뽑고, 그 적을 만들 자원이 쌓일 때까지 모든 생성을 기다리는 경로가 있었습니다. 저는 자원이 많이 드는 적의 몫을 따로 모으면서 다른 적은 계속 생성하는 변경에 동의했습니다.</p><p>Codex가 생성 로직을 수정하고 10분 분량의 생성 시뮬레이션과 Unity 컴파일을 확인했습니다. 제가 본 순간은 따로 기록하지 않아 실제 플레이에서 공백이 얼마나 줄었는지는 측정하지 못했습니다.</p></details>
+</article>
+<article>
+  <p class="domain">UI · 첫 화면 표시</p>
+  <h3>도감을 처음 열면 게임이 멎었다</h3>
+  <p>웹에서 발견한 멈춤이 <strong>에디터에서도 재현</strong>됐습니다. 설정창도 처음 열 때 끊긴다는 점을 짚어, 두 메뉴가 첫 표시에 하는 일을 살펴봤습니다.</p>
+  <img src="bestiary.webp" width="800" height="450" loading="lazy" alt="발견한 천체의 이름과 설명을 보여주는 도감">
+  <details><summary>고정 문구의 글자를 미리 생성</summary><p>저는 고정 문구의 글자를 미리 준비하고, 빠진 글자만 실행 중 만드는 방식을 선택했습니다. Codex가 이를 적용하고 도감을 열 때 리소스 로딩을 기다리는 코드와 글자 크기를 다시 계산하는 작업도 제거했습니다.</p><p>수정 후 Unity Editor의 첫 표시는 도감 약 13ms, 설정창 약 21ms였습니다. 당시 웹 빌드에서는 다시 측정하지 않았습니다.</p></details>
+</article>
+<article>
+  <p class="domain">플레이 데이터 · Unity Analytics</p>
+  <h3>강화 카드가 떴을 때 몇 번이나 골랐을까?</h3>
+  <p>드물게 등장한 카드와 자주 지나친 카드를 구별하려고 <strong>후보로 뜬 횟수 대비 선택률</strong>을 요청했습니다. 검수 플레이는 집계에서 제외하도록 했습니다.</p>
+  <img src="upgrade-choice.webp" width="800" height="450" loading="lazy" alt="세 가지 강화 카드와 다시 뽑기, 건너뛰기 버튼이 있는 선택 화면">
+  <details><summary>후보마다 선택·미선택 기록</summary><p>Codex가 선택 화면에 뜬 후보 각각에 선택 여부를 한 번씩 기록하도록 바꿨습니다. 다시 뽑거나 건너뛰면 해당 후보들을 미선택으로 기록해, Unity Data Explorer에서 카드별 선택률을 볼 수 있게 했습니다.</p><p>당시 수집 코드와 보고서 설정을 검수했습니다. 운영 표본이 쌓이기 전이어서 실제 이용자의 선택률은 제시하지 않았습니다.</p></details>
+</article>
 </div>
 <section class="optimization" aria-labelledby="opt-title">
 <h2 id="opt-title">최적화</h2><div class="opt-grid">
