@@ -70,6 +70,11 @@ th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
 .project-video{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0;border-radius:6px;background:#10191c}
 .projects h3{font-size:31px;margin:5px 0}
 .projects p{max-width:55ch}
+.projects .team-role{max-width:none;border-block:1px solid var(--line);padding:10px 0;font-weight:650;color:var(--ink)}
+.team-role b{display:inline-block;margin-right:.6em;font-size:13px;color:#40675e}
+.team-work{margin:14px 0 20px}
+.team-work dt{font-weight:750;margin-top:12px}
+.team-work dd{margin:3px 0 0;color:#42534b}
 .links a{border-bottom:1px solid #748377;font-weight:700;font-size:14px}
 .foot{padding:42px 0;gap:16px}
 .foot h2{font-size:36px;margin:10px 0 2px}
