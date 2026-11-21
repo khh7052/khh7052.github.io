@@ -61,9 +61,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-orbit-planet { display: block; width: 62%; height: auto; filter: drop-shadow(0 12px 18px #59322032); }
 .asteroid-orbit-rock { position: absolute; z-index: 1; top: 12%; right: 7%; width: 12%; height: auto; transform: rotate(14deg); }
 .asteroid-systems { padding-block: clamp(30px,5vw,62px); background: radial-gradient(ellipse at 85% 10%,#233958 0,transparent 60%),var(--orbit-night); color: #fff8ef; }
-.asteroid-section-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; }
-.asteroid-section-heading h2,.asteroid-problems h2 { font-size: clamp(28px,3.5vw,46px); }
-.asteroid-section-heading p { color: #d5deea; }
+.asteroid-systems h2,.asteroid-problems h2 { font-size: clamp(28px,3.5vw,46px); }
 .asteroid-implementation-media { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(14px,2.4vw,30px); margin-top: clamp(18px,2.5vw,30px); }
 .asteroid-implementation-media > figure,.asteroid-combat-card { min-width: 0; overflow: hidden; border: 1px solid #52617a; border-radius: 14px; background: #172337; }
 .asteroid-implementation-media img { display: block; width: 100%; height: auto; background: #080f1c; }
