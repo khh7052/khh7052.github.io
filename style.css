@@ -83,6 +83,14 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-copy { grid-area: copy; }
 .team-role { font-weight: 700; }
 .project-copy h2 { margin-bottom: 8px; font-size: clamp(19px,1.6vw,24px); }
+.project-dialog { width: min(1040px,calc(100% - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: #fffef9; overscroll-behavior: contain; }
+.project-dialog::backdrop { background: rgb(15 20 22 / 75%); }
+body:has(.project-dialog[open]) { overflow: hidden; }
+.project-dialog-toolbar { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px clamp(16px,3vw,32px); border-bottom: 1px solid var(--line); background: #fffef9; font-size: 14px; }
+.project-dialog-toolbar button { min-height: 44px; padding-inline: 12px; border: 1px solid var(--line); border-radius: 5px; background: var(--paper); color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
+.project-dialog-toolbar span { margin-left: 4px; font-size: 18px; }
+.project-dialog-content { margin: 0; padding: clamp(16px,3vw,32px); }
+.project-dialog-content article { padding: 0; border: 0; }
 .links { flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: 14px; font-weight: 650; }
 .foot { justify-content: space-between; gap: 18px; padding-block: 38px; }
 .foot h2 { font-size: 30px; margin-block: 4px; }
@@ -94,6 +102,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 }
 @media(max-width:640px){
   body { font-size: 15px; }
+  .project-dialog { width: calc(100% - 16px); max-height: calc(100dvh - 16px); border-radius: 8px; }
   .head { min-height: 56px; }
   .head nav { gap: 12px; font-size: 13px; }
   .name { font-size: 17px; }
