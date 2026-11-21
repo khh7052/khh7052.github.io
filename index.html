@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-case-comparisons">
+<link rel="stylesheet" href="style.css?v=asteroid-spawn-diagram">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -169,16 +169,36 @@
             <p class="asteroid-case-verification"><strong>검증</strong><span>Codex가 풀링을 구현했습니다. Unity Editor 비교에서 준비된 오브젝트를 가져오는 호출 비용이 줄었습니다.</span></p>
           </div>
         </article>
-        <article>
+        <article class="asteroid-spawn-case">
           <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>
-          <dl class="asteroid-case-comparison" aria-label="소행성 생성 로직 변경">
-            <div><dt>변경 전 · 공용 예산</dt><dd>비용이 큰 후보가 기다리면 다른 생성도 멈춤</dd></div>
-            <div><dt>변경 후 · 비용별 예산</dt><dd>비용이 큰 후보가 기다려도 일반 생성은 계속</dd></div>
-          </dl>
+          <div class="asteroid-spawn-diagrams">
+            <section class="asteroid-spawn-diagram asteroid-spawn-before" aria-labelledby="asteroid-spawn-before-title">
+              <h4 id="asteroid-spawn-before-title">변경 전</h4>
+              <ol class="asteroid-spawn-path" role="list">
+                <li class="asteroid-spawn-node">모든 소행성이 한 예산을 사용</li>
+                <li class="asteroid-spawn-node">비용이 큰 후보 선택 · 예산 부족</li>
+                <li class="asteroid-spawn-node asteroid-spawn-node-stop">모든 소행성 생성 대기</li>
+              </ol>
+            </section>
+            <section class="asteroid-spawn-diagram asteroid-spawn-after" aria-labelledby="asteroid-spawn-after-title">
+              <h4 id="asteroid-spawn-after-title">변경 후</h4>
+              <p class="asteroid-spawn-node">생성 예산을 두 갈래로 적립</p>
+              <div class="asteroid-spawn-branches">
+                <ol class="asteroid-spawn-path" role="list" aria-label="일반 소행성 생성 경로">
+                  <li class="asteroid-spawn-node">일반 소행성 예산</li>
+                  <li class="asteroid-spawn-node asteroid-spawn-node-go">예산이 충분하면 계속 생성</li>
+                </ol>
+                <ol class="asteroid-spawn-path" role="list" aria-label="비용이 큰 소행성 생성 경로">
+                  <li class="asteroid-spawn-node">비용이 큰 소행성 예산</li>
+                  <li class="asteroid-spawn-node asteroid-spawn-node-wait">이 후보만 예산이 찰 때까지 대기</li>
+                </ol>
+              </div>
+            </section>
+          </div>
           <div class="asteroid-case-body">
             <dl class="asteroid-case-steps">
               <div><dt>발견</dt><dd>소행성이 뜸해지는 장면이 일반 웨이브 도중에 발생한다고 짚었습니다.</dd></div>
-              <div><dt>원인과 대응</dt><dd>다음 후보의 비용이 충족될 때까지 생성 전체가 기다리는 구조였습니다. 전체 생성 예산 안에서 비용이 큰 소행성의 몫을 따로 쌓는 방안에 동의했습니다.</dd></div>
+              <div><dt>수정 방향</dt><dd>전체 생성 예산은 유지하면서 비용이 큰 소행성의 몫을 따로 쌓는 방안에 동의했습니다.</dd></div>
             </dl>
             <p class="asteroid-case-verification"><strong>검증</strong><span>Codex가 생성 로직을 수정하고 10분 분량의 생성 시뮬레이션과 Unity 컴파일로 확인했습니다.</span></p>
           </div>
