@@ -79,6 +79,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-title h1 { font-size: clamp(30px,4vw,54px); line-height: 1.15; letter-spacing: -.045em; }
 .project-back { font-weight: 700; }
 .project-media { grid-area: media; }
+.project-genre { margin-top: 8px; color: var(--muted); font-weight: 650; }
 .project-copy { grid-area: copy; }
 .project-copy .team-intro { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--ink); }
 .project-heading .project-period,.team-role { display: inline-block; white-space: nowrap; }
@@ -107,7 +108,7 @@ body:has(.project-dialog[open]) { overflow: hidden; }
 .project-dialog button:focus-visible { outline: 3px solid #e68e27; outline-offset: 3px; }
 .project-dialog-content { margin: 0; padding: clamp(16px,3vw,36px); }
 .projects.project-dialog-content article { padding: 0; border: 0; }
-.project-dialog-content .project-media > * { border-radius: 8px; }
+.project-dialog-content .project-media > :is(img,iframe) { border-radius: 8px; }
 .project-dialog-content > button { margin-top: 12px; }
 .links { flex-wrap: wrap; gap: 6px 16px; margin-top: 16px; font-size: 14px; font-weight: 650; }
 .foot { justify-content: space-between; gap: 18px; padding-block: 38px; }

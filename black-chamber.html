@@ -7,19 +7,22 @@
 <meta name="description" content="Black Chamber에서 김혜현이 맡은 역할과 구현을 소개합니다.">
 <title>Black Chamber — 김혜현</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=project-intro">
+<link rel="stylesheet" href="style.css?v=media-genres">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
-<header><div class="wrap head"><a class="name" href="./?v=project-intro">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="./?v=project-intro#projects">팀 프로젝트</a><a href="#contact">연락처</a></nav></div></header>
+<header><div class="wrap head"><a class="name" href="./?v=media-genres">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="./?v=media-genres#projects">팀 프로젝트</a><a href="#contact">연락처</a></nav></div></header>
 <main class="other" id="work">
 <div class="wrap">
-<a class="project-back" href="./?v=project-intro#projects">← 팀 프로젝트</a>
+<a class="project-back" href="./?v=media-genres#projects">← 팀 프로젝트</a>
 <div class="projects project-detail">
 <article id="black-chamber"><div class="project-heading"><div class="project-title"><h1 lang="en">Black Chamber</h1></div>
 <p class="meta">7인 팀 · Unity <span class="project-period"><span aria-hidden="true">/</span> 개발 기간 2025.09 ~ 2025.11</span> <strong class="team-role"><span aria-hidden="true">/</span> 적 AI · 데이터 연동</strong></p>
-</div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy">
-<p class="team-intro">적이 경비하는 구역에 들어가는 2D 탑다운 잠입 액션 게임입니다. 플레이어는 적의 시야를 피해 이동하고, 발각되면 직접 총격전을 벌입니다. 총성이 들리면 주변의 적이 소리가 난 곳을 수색하기 때문에 사격할 때는 이후의 움직임도 고려해야 합니다.</p>
+</div><figure class="project-media">
+<iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<figcaption class="project-genre">2D 탑다운 잠입 액션 게임</figcaption>
+</figure><div class="project-copy">
+<p class="team-intro">내일배움캠프(유니티 11기)에서 개발한 최종 팀 프로젝트. 플레이어는 적들에게 들키지 않고 타겟을 암살하거나, 상황에 따라 전투 모드로 전환하여 정면 돌파할 수 있습니다. 스텔스와 액션의 균형을 통해 다양한 플레이 스타일과 스테이지 및 무기를 제공합니다.</p>
 <h2>벽을 돌아 들리는 총성까지 계산하는 적 AI</h2>
 <p class="team-method">한 발의 총성에 대해 직선 경로와 벽을 우회하는 경로의 소리 세기를 각각 계산했습니다. 우회 경로의 길이는 NavMesh로 구했습니다. 두 값 중 큰 값을 적의 청각 기준과 비교하고, 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</p>
 <p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
