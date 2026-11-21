@@ -41,16 +41,13 @@ h2,h3,p{margin-top:0}
 h2{font-size:clamp(36px,4.6vw,66px);line-height:1.14;letter-spacing:-.065em;margin:14px 0 30px}
 h3{line-height:1.35;letter-spacing:-.04em}
 .steps,.projects,.evidence{display:grid}
-.case-layout{display:grid;grid-template-columns:1.2fr .8fr;align-items:start;gap:6%}
-.case h2{font-size:clamp(30px,3vw,46px);margin-bottom:32px}
-.steps article{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:17px 0;border-top:1px solid var(--line)}
-.steps article:first-child{border-color:#72947d}
-.seq{font-size:13px;color:#286247;padding-top:4px}
-.steps h3{margin:0 0 6px;font-size:clamp(17px,1.55vw,21px)}
+.steps{grid-template-columns:repeat(3,1fr);gap:28px}
+.steps article{border-top:2px solid #628172;padding-top:13px}
+.seq{color:#47665a}
+.steps h3{margin:10px 0;font-size:clamp(20px,2vw,27px)}
 .steps p,.projects p,.detail p{color:#42534b}
-.steps p{margin:0;line-height:1.7;font-size:15px}
-.evidence{background:#e8ede0;border-top:3px solid #527762;padding:22px 7%;gap:18px}
-.credit{font-size:13px;border-top:1px solid #bcc9b6;padding-top:12px;margin:0;color:#405448}.finding .eyebrow{color:#345648}
+.evidence{background:#e9eee2;border:1px solid #d1d9cc;grid-template-columns:.8fr 1.2fr;align-items:center;gap:8%;margin-top:22px;padding:30px 5%;border-radius:8px}
+.finding .eyebrow{color:#345648}
 .finding strong{font:700 clamp(40px,5vw,70px)/1.2 "Inter","Malgun Gothic",sans-serif;letter-spacing:-.06em}
 .finding strong span{font-size:.55em}
 .finding p:last-child{margin:6px 0 0}
@@ -79,40 +76,34 @@ th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
 .foot p{margin-bottom:0}
 .contact{display:grid;gap:5px;color:#ffdc72}
 .foot .eyebrow{color:#a9b9b5}
-.hero{background:radial-gradient(ellipse at 73% 52%,#1b3035,transparent 64%),var(--night)}
-.hero-grid{grid-template-columns:1fr 1.32fr;gap:5%;padding-block:42px}
-.lead h1{margin:16px 0 6px}
-.lead h1 img{width:min(100%,292px)}
-.pitch{font-size:15px;color:#c2cdc9}
-.contribution{font-size:clamp(21px,2vw,29px);font-weight:750;letter-spacing:-.055em;line-height:1.35;margin:23px 0 8px}
-.decision{max-width:45ch;font-size:16px;color:#d6ded8;margin:0}
-.project-role{display:block;margin-bottom:8px;color:#33624d}
-.case{padding-block:48px}
-@media(max-width:780px){
-  .hero-grid,.case-layout{grid-template-columns:1fr;gap:26px}
-  .hero-grid{padding-block:28px}
-  .lead h1 img{width:225px}
-  .contribution{margin-top:15px}
-  .decision{max-width:55ch}
-  .head{min-height:64px}
-  nav{gap:15px}
-  .name span{display:block;margin:0;font-size:11px}
-  .name{line-height:1.35}
-  .case{padding-block:34px}
-  .case h2{margin-bottom:18px}
-  .evidence{padding:22px}
-  .projects{gap:22px}
+@media(max-width:780px){.hero-grid{grid-template-columns:1fr;padding-block:32px;gap:28px}
+.lead h1 img{width:270px}
+.pitch{max-width:100%}
+.case{padding-block:42px}
+.steps{grid-template-columns:1fr;gap:12px}
+.steps article{display:grid;grid-template-columns:78px 1fr;gap:5px 12px}
+.steps h3{margin:0}
+.steps p{grid-column:2;margin:0 0 4px}
+.steps .seq{padding-top:4px}
+.evidence{grid-template-columns:1fr 1.35fr;gap:18px;padding:22px}
+.projects{gap:22px}
+.head{min-height:64px}
+nav{gap:16px}
+.name span{display:none}
 }
-@media(max-width:540px){
-  .wrap{width:90%}
-  nav{font-size:12px;gap:10px}
-  .actions{gap:18px;margin-top:16px}
-  .projects{grid-template-columns:1fr}
-  .finding p br{display:none}
-  .foot{align-items:flex-start;flex-direction:column}
-  .other{padding-block:35px}
-  .chart figcaption small{display:block}
-  .hero-grid{gap:20px}
-  .steps article{gap:13px}
+@media(max-width:540px){.wrap{width:90%}
+.actions{gap:12px}
+.steps article{display:block}
+.steps h3{margin:5px 0}
+.evidence,.projects{grid-template-columns:1fr}
+.evidence{gap:20px}
+.finding p br{display:none}
+.foot{align-items:flex-start;flex-direction:column}
+.other{padding-block:35px}
+nav{font-size:13px;gap:13px}
+.chart figcaption small{display:block}
+.hero-grid{gap:22px}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+}
+
