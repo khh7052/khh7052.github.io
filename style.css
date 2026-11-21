@@ -65,9 +65,13 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-section-heading h2,.asteroid-problems h2 { font-size: clamp(28px,3.5vw,46px); }
 .asteroid-section-heading p { color: #d5deea; }
 .asteroid-implementation-media { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(14px,2.4vw,30px); margin-top: clamp(18px,2.5vw,30px); }
-.asteroid-implementation-media figure { min-width: 0; overflow: hidden; border: 1px solid #52617a; border-radius: 14px; background: #172337; }
+.asteroid-implementation-media > figure,.asteroid-combat-card { min-width: 0; overflow: hidden; border: 1px solid #52617a; border-radius: 14px; background: #172337; }
 .asteroid-implementation-media img { display: block; width: 100%; height: auto; background: #080f1c; }
-.asteroid-implementation-media figcaption { padding: clamp(14px,2vw,24px); }
+.asteroid-implementation-media > figure > figcaption,.asteroid-combat-copy { padding: clamp(14px,2vw,24px); }
+.asteroid-combat-shots { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1px; background: #52617a; }
+.asteroid-combat-shots figure { position: relative; }
+.asteroid-combat-shots img { aspect-ratio: 8/9; object-fit: cover; }
+.asteroid-combat-shots figcaption { position: absolute; top: 8px; left: 8px; padding: 2px 8px; border-radius: 4px; background: #0b1425; color: #fff8ef; font-weight: 700; }
 .asteroid-implementation-media h3,.asteroid-wave h3,.asteroid-problem-cases h3 { font-size: clamp(18px,2vw,24px); }
 .asteroid-implementation-media h3 { color: var(--accent); }
 .asteroid-implementation-media p,.asteroid-wave p { margin-top: 6px; color: #d5deea; font-size: 15px; }
