@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 첫 발사 끊김을 발견하고 워밍업을 비교한 뒤 풀링 범위를 정한 과정을 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=team-work-2">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -53,20 +53,20 @@
 </div></details>
 </section>
 <section id="projects" class="other"><div class="wrap"><h2>함께 만든 게임</h2><div class="projects">
-<article><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe><p class="meta">7인 팀 · Unity · 2025</p><h3 lang="en">Black Chamber</h3><p><strong>적의 시야와 소음을 신경 쓰며 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 잠입 액션 게임입니다.</strong></p><p class="team-role"><b>내 역할</b> 적 AI · 소음 시스템 · 적·무기 데이터 연동</p>
-<dl class="team-work">
-<dt>총성을 들은 적의 반응</dt>
-<dd>직선 경로와 NavMesh 우회 경로로 전달되는 소리의 세기를 각각 계산했습니다. 더 강하게 도달한 값을 적의 반응 기준과 비교하고, 수색·의심·공격 행동은 상태 머신으로 나눴습니다.</dd>
-<dt>기획자가 수정한 수치 반영</dt>
-<dd>Google Sheets의 적·무기 데이터를 Firebase에 올리고 Unity에서 읽도록 연결했습니다. 기획자가 시트에서 바꾼 수치를 게임에 반영할 수 있게 했습니다.</dd>
-</dl><div class="links"><a href="https://www.youtube.com/watch?v=OVt4j6ZTV6E">YouTube에서 보기 ↗</a><a href="https://github.com/NextTheWAT/2D_Black_Chamber/blob/2908fb2551f6e2d5081e6ffdaaa8c9aa0eba5e2b/Assets/02.%20Scripts/Manager/Sound/NoiseManager.cs">소음 전파 코드 ↗</a></div></article>
-<article><iframe class="project-video" width="560" height="315" loading="lazy" title="VR Spell 마법 시전 영상" src="https://www.youtube-nocookie.com/embed/dDI8KQEFRR0?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe><p class="meta">3인 팀 · Unity · 2023–2024</p><h3 lang="en">VR Spell</h3><p><strong>손으로 공중에 문양을 그려 마법을 시전하고, 밀려오는 몬스터를 막는 VR 디펜스 게임입니다.</strong></p><p class="team-role"><b>내 역할</b> 3인 팀의 단독 프로그래머 · 게임 프로그래밍 전체</p>
-<dl class="team-work">
-<dt>손으로 그린 여러 획을 하나의 주문으로</dt>
-<dd>Meta XR SDK로 손가락 관절을 추적했습니다. 문양 인식을 $1 Recognizer에서 $Q Recognizer로 바꿔, 손을 떼고 다음 획을 그려도 같은 주문으로 인식하게 했습니다.</dd>
-<dt>주문 시전부터 웨이브 전투까지</dt>
-<dd>인식한 문양에 맞는 마법을 발동시키고, 몬스터 AI와 웨이브 진행을 구현했습니다. 레벨업 때는 능력치를 강화할 수 있게 했습니다.</dd>
-</dl><div class="links"><a href="https://www.youtube.com/watch?v=dDI8KQEFRR0">YouTube에서 보기 ↗</a></div></article></div>
+<article><p class="meta">7인 팀 · Unity · 2025</p><h3 lang="en">Black Chamber</h3><p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p>
+<iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<p class="team-role"><b>담당</b> 적 AI · 소음 전파 · 적과 무기 데이터 연동</p>
+<h4>벽 뒤의 총성을 적은 어떻게 들을까?</h4>
+<p class="team-method">총성이 직선으로 전달될 때와 벽을 돌아갈 때의 세기를 각각 계산했습니다. 우회 거리는 NavMesh로 구하고, 더 크게 들린 값을 적의 반응 기준과 비교했습니다. 수색·의심·공격 행동은 상태 머신으로 구현했습니다.</p>
+<p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
+<div class="links"><a href="https://www.youtube.com/watch?v=OVt4j6ZTV6E">YouTube에서 보기 ↗</a><a href="https://github.com/NextTheWAT/2D_Black_Chamber/blob/2908fb2551f6e2d5081e6ffdaaa8c9aa0eba5e2b/Assets/02.%20Scripts/Manager/Sound/NoiseManager.cs">소음 전파 코드 ↗</a></div></article>
+<article><p class="meta">3인 팀 · Unity · 2023–2024</p><h3 lang="en">VR Spell</h3><p class="team-intro">손으로 문양을 그려 마법을 시전하고, 밀려오는 몬스터를 막는 VR 디펜스.</p>
+<iframe class="project-video" width="560" height="315" loading="lazy" title="VR Spell 마법 시전 영상" src="https://www.youtube-nocookie.com/embed/dDI8KQEFRR0?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
+<p class="team-role"><b>담당</b> 단독 프로그래머 · 마법 입력부터 웨이브 진행까지</p>
+<h4>손을 떼고 이어 그려도 하나의 주문으로</h4>
+<p class="team-method">Meta XR SDK로 손가락 관절을 추적하고, 한 획을 인식하던 $1 Recognizer를 여러 획을 처리하는 $Q Recognizer로 교체했습니다. 획 사이에 손을 떼어도 완성된 문양에 맞는 마법이 발동합니다.</p>
+<p class="team-extra"><b>전투 진행</b> 몬스터 AI와 웨이브별 등장을 구현하고, 레벨업하면 능력치를 강화할 수 있게 했습니다.</p>
+<div class="links"><a href="https://www.youtube.com/watch?v=dDI8KQEFRR0">YouTube에서 보기 ↗</a></div></article></div>
 <details><summary>잉크캣 프로젝트 참여 · RabbitGun</summary><div class="detail"><p>2026.07–08 개발 기록 기준. 2D 생존 슈팅에서 조준·재장전, 아이템 퀵슬롯·장착, 플레이어와 월드 상태 저장에 필요한 동작과 수정 방향을 Codex에 전달했습니다.</p></div></details></div></section>
 </main><footer id="contact"><div class="wrap foot"><div><p class="eyebrow">연락처</p><h2>김혜현</h2><p>Unity 게임 클라이언트 개발자</p></div><div class="contact"><a href="mailto:khh7052@naver.com">khh7052@naver.com ↗</a><a href="https://github.com/khh7052">GitHub ↗</a></div></div></footer>
 </body></html>
