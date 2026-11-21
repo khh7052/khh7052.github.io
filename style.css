@@ -1,0 +1,109 @@
+:root{color-scheme:light;--ink:#152523;--page:#faf8f1;--night:#10191c;--yellow:#ffd65a;--muted:#54635f;--line:#c9d0c5}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{margin:0;background:var(--page);color:var(--ink);font:16px/1.65 "Inter","Malgun Gothic","Apple SD Gothic Neo",sans-serif;word-break:keep-all}
+a{color:inherit;text-underline-offset:5px}
+a:focus-visible,summary:focus-visible,video:focus-visible{outline:3px solid #e88925;outline-offset:5px}
+.wrap{width:min(1200px,90vw);margin:auto}
+.skip{position:absolute;left:-100vw;background:white;z-index:5}
+.skip:focus{left:15px}
+header,.hero,footer{background:var(--night);color:#f9f7ea}
+.head,.foot,.actions,.links,.row{display:flex;align-items:center;justify-content:space-between}
+.head{min-height:76px;border-bottom:1px solid #354043}
+.name{text-decoration:none;font-size:21px;font-weight:800}
+.name span{color:#b7c4c2;font-size:13px;font-weight:500;margin-left:10px}
+nav{display:flex;gap:28px;font-size:14px}
+nav a,.button,.text-link,.links a,.contact a{text-decoration:none}
+a:hover{text-decoration:underline}
+.hero-grid{display:grid;grid-template-columns:.82fr 1.28fr;gap:6%;align-items:center;padding-block:60px 58px}
+.eyebrow,.seq,.meta,figcaption,.row{font-size:13px;font-weight:600}
+.eyebrow{margin:0;color:#c7d4cd;display:flex;align-items:center;gap:10px}
+.eyebrow i{display:inline-block;width:19px;height:3px;background:var(--yellow)}
+.eyebrow span,.meta span{opacity:.55}
+.lead h1{margin:18px 0 16px}
+.lead h1 img{display:block;width:min(100%,355px);height:auto}
+.pitch{max-width:405px;margin:0;color:#e9ede6;font-size:18px}
+.actions,.links{justify-content:flex-start;flex-wrap:wrap;gap:20px}
+.actions{margin-top:22px}
+.button{padding:10px 17px;border-radius:5px;font-weight:800}
+.primary{background:var(--yellow);color:#172225}
+.text-link{font-size:14px;border-bottom:1px solid #83938b}
+.meta{color:var(--muted);margin:15px 0 0}
+.lead .meta{color:#afbfbb}
+.movie,.chart{margin:0}
+.movie video{width:100%;aspect-ratio:16/9;display:block;background:#000;border:1px solid #52605a;border-radius:8px}
+.movie figcaption,.chart figcaption,.row{display:flex;justify-content:space-between;gap:10px}
+.movie figcaption{margin-top:9px;color:#b8c4c2}
+.case{padding-block:64px}
+.ink{color:#40675e}
+.ink i{background:#39846d}
+h2,h3,p{margin-top:0}
+h2{font-size:clamp(36px,4.6vw,66px);line-height:1.14;letter-spacing:-.065em;margin:14px 0 30px}
+h3{line-height:1.35;letter-spacing:-.04em}
+.steps,.projects,.evidence{display:grid}
+.steps{grid-template-columns:repeat(3,1fr);gap:28px}
+.steps article{border-top:2px solid #628172;padding-top:13px}
+.seq{color:#47665a}
+.steps h3{margin:10px 0;font-size:clamp(20px,2vw,27px)}
+.steps p,.projects p,.detail p{color:#42534b}
+.evidence{background:#e9eee2;border:1px solid #d1d9cc;grid-template-columns:.8fr 1.2fr;align-items:center;gap:8%;margin-top:22px;padding:30px 5%;border-radius:8px}
+.finding .eyebrow{color:#345648}
+.finding strong{font:700 clamp(40px,5vw,70px)/1.2 "Inter","Malgun Gothic",sans-serif;letter-spacing:-.06em}
+.finding strong span{font-size:.55em}
+.finding p:last-child{margin:6px 0 0}
+.chart figcaption{align-items:baseline;flex-wrap:wrap;font-size:17px}
+.chart small{font-size:12px;font-weight:500}
+.row{margin:12px 0 5px}
+.track{height:12px;border-radius:3px;background:#d6dfcf;overflow:hidden}
+.track i{display:block;height:100%;background:#31594c}
+.track:last-child i{background:#788f72}
+details{margin-top:20px;border-block:1px solid var(--line)}
+summary{cursor:pointer;padding:15px 4px;font-weight:700}
+.detail{max-width:800px;padding:0 8px 10px}
+.detail p{margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:14px;margin-block:18px}
+caption{text-align:left;font-weight:700}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--line)}
+.other{background:#f0eee4;padding:54px 0}
+.other h2{font-size:clamp(32px,3.2vw,46px);margin-top:0}
+.projects{grid-template-columns:1fr 1fr;gap:32px}
+.projects img{display:block;width:100%;aspect-ratio:16/8;object-fit:cover;border-radius:6px}
+.projects h3{font-size:31px;margin:5px 0}
+.projects p{max-width:55ch}
+.links a{border-bottom:1px solid #748377;font-weight:700;font-size:14px}
+.foot{padding:42px 0;gap:16px}
+.foot h2{font-size:36px;margin:10px 0 2px}
+.foot p{margin-bottom:0}
+.contact{display:grid;gap:5px;color:#ffdc72}
+.foot .eyebrow{color:#a9b9b5}
+@media(max-width:780px){.hero-grid{grid-template-columns:1fr;padding-block:32px;gap:28px}
+.lead h1 img{width:270px}
+.pitch{max-width:100%}
+.case{padding-block:42px}
+.steps{grid-template-columns:1fr;gap:12px}
+.steps article{display:grid;grid-template-columns:78px 1fr;gap:5px 12px}
+.steps h3{margin:0}
+.steps p{grid-column:2;margin:0 0 4px}
+.steps .seq{padding-top:4px}
+.evidence{grid-template-columns:1fr 1.35fr;gap:18px;padding:22px}
+.projects{gap:22px}
+.head{min-height:64px}
+nav{gap:16px}
+.name span{display:none}
+}
+@media(max-width:540px){.wrap{width:90%}
+.actions{gap:12px}
+.steps article{display:block}
+.steps h3{margin:5px 0}
+.evidence,.projects{grid-template-columns:1fr}
+.evidence{gap:20px}
+.finding p br{display:none}
+.foot{align-items:flex-start;flex-direction:column}
+.other{padding-block:35px}
+nav{font-size:13px;gap:13px}
+.chart figcaption small{display:block}
+.hero-grid{gap:22px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+}
+
