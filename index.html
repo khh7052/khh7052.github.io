@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-project-overview">
+<link rel="stylesheet" href="style.css?v=asteroid-systems-evidence">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -26,17 +26,25 @@
   <div class="wrap">
     <section class="asteroid-implementation-intro" aria-labelledby="asteroid-implementation-title">
       <h2 id="asteroid-implementation-title">게임 소개</h2>
-      <p>웨이브마다 중앙 행성으로 접근하는 소행성을 미사일로 요격합니다. 전투 중 연구와 증강을 선택하면 공격 방식이 달라져, 같은 미사일로도 다음 웨이브를 다르게 공략할 수 있습니다.</p>
+      <div>
+        <p>플레이어는 중앙 행성에 접근하는 소행성 중 어느 방향부터 요격할지 판단합니다. 소행성을 파괴해 연구 포인트를 모으면 강화 카드를 고를 수 있습니다. 방어력을 높여 행성을 지키거나, 미사일을 강화해 밀려오는 소행성을 처리할 수 있습니다.</p>
+        <p>일부 강화는 조합을 완성하면 공격의 동작까지 바꿉니다. 예를 들어 성운을 얻으면 미사일 명중 지점에 피해 영역이 남아, 뒤따라오는 소행성에도 피해를 줄 수 있습니다.</p>
+      </div>
     </section>
     <section aria-labelledby="asteroid-systems-title">
       <div class="asteroid-implementation-intro">
         <h2 id="asteroid-systems-title">주요 시스템</h2>
-        <p>미사일 발사부터 소행성 충돌 판정과 폭발까지 전투를 구현했습니다. 연구와 증강 선택을 전투에 연결하고, 명중 효과를 추가하는 처리와 기본 폭발을 바꾸는 처리를 분리했습니다.</p>
+        <p>미사일 전투, 파괴 보상에서 이어지는 연구·증강, 웨이브별 소행성 생성을 연결했습니다.</p>
       </div>
+      <dl class="asteroid-system-list">
+        <div><dt>미사일 전투</dt><dd>미사일이 명중하면 직격 피해를 먼저 처리합니다. 별무리처럼 명중 위치에 효과를 더하는 증강과, 성운처럼 기본 폭발을 지속 범위 피해로 바꾸는 증강은 서로 다른 단계에서 실행되도록 분리했습니다.</dd></div>
+        <div><dt>연구와 증강</dt><dd>소행성을 파괴하면 연구 포인트를 지급하고, 필요한 양을 채우면 카드 후보를 제시합니다. 카드에 따라 현재 전투의 능력치를 바꾸거나 새 효과를 활성화하고, 조합 조건을 충족하면 최종 강화를 열도록 연결했습니다.</dd></div>
+        <div><dt>웨이브와 소행성 생성</dt><dd>진행 단계에 따라 등장 가능한 소행성 종류와 생성 강도를 갱신합니다. 소행성 유형마다 등장 가중치와 생성 비용을 두고, 웨이브 중 쌓인 생성 예산을 사용합니다.</dd></div>
+      </dl>
       <div class="asteroid-implementation-media">
         <figure>
           <img src="upgrade-choice.webp" width="800" height="450" loading="lazy" alt="충격 흡수, 고속 연구, 재설계 카드가 표시된 게임의 선택 화면">
-          <figcaption><strong>연구·증강 선택</strong><span>카드를 골라 이번 플레이에 적용할 효과를 정합니다.</span></figcaption>
+          <figcaption><strong>연구·증강 선택</strong><span>선택하기 전에 능력치 변화와 각 카드가 연결되는 최종 조합을 확인합니다.</span></figcaption>
         </figure>
         <figure>
           <img src="nebula-combat.webp" width="960" height="540" loading="lazy" alt="미사일이 명중한 뒤 행성 아래쪽에 푸른 성운이 펼쳐진 전투 화면">
@@ -46,11 +54,18 @@
     </section>
     <section aria-labelledby="asteroid-problem-title">
       <h2 id="asteroid-problem-title">문제 해결 과정</h2>
-      <ol class="asteroid-problem-steps">
-        <li><h3>첫 발사 끊김 발견</h3><p>직접 플레이하던 중 첫 미사일을 발사할 때 화면이 순간적으로 끊기는 현상을 확인했습니다.</p></li>
-        <li><h3>워밍업 전후 비교</h3><p>이펙트를 미리 준비한 경우와 준비하지 않은 경우의 첫 발사 프레임 시간을 비교하도록 요청했습니다. 측정 범위가 겹쳐 워밍업 효과를 확정하기 어려웠습니다.</p></li>
-        <li><h3>전투 오브젝트 풀링 요청</h3><p>전투 중 반복 생성되는 오브젝트를 재사용하도록 요청했습니다. Codex가 풀링을 구현하고 검수했습니다.</p></li>
-      </ol>
+      <div class="asteroid-problem-cases">
+        <article>
+          <h3>첫 미사일을 쏠 때 화면이 끊김</h3>
+          <p>플레이 중 첫 발사 순간에 화면이 끊기는 걸 발견했습니다. 발사 이펙트의 첫 준비가 영향을 주는지 확인하려고, 같은 씬과 무기에서 워밍업 유무만 바꾸고 첫 발사 함수 시간과 발사 직후 화면 갱신 간격을 따로 비교하도록 요청했습니다.</p>
+          <p>발사 함수는 빨라졌지만 화면 갱신 간격 범위는 서로 겹쳤습니다. 이어서 전투 중 반복 생성되는 미사일과 소행성을 재사용하도록 풀링을 요청했습니다. Codex가 구현하고 비교한 결과, Unity Editor에서 준비된 오브젝트를 가져오는 호출 비용이 줄었습니다.</p>
+        </article>
+        <article>
+          <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>
+          <p>소행성이 한동안 뜸해지는 장면이 일반 웨이브 도중에 발생한다고 짚었습니다. 생성 로직을 확인하니, 비용이 큰 소행성이 다음 후보로 뽑히면 예산이 찰 때까지 다른 소행성도 생성을 기다리는 구조였습니다.</p>
+          <p>전체 예산 안에서 비용이 큰 소행성 몫을 따로 쌓고, 대기 중에도 생성 가능한 소행성이 계속 나오게 하는 방안에 동의했습니다. Codex가 생성 로직을 바꾸고 10분 분량의 생성 시뮬레이션과 Unity 컴파일로 확인했습니다.</p>
+        </article>
+      </div>
     </section>
   </div>
 </div>

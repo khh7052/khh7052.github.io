@@ -50,15 +50,19 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-implementation-intro { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.6fr); align-items: baseline; gap: 8px clamp(16px,3vw,40px); }
 .asteroid-implementation h2 { font-size: clamp(22px,2.4vw,32px); }
 .asteroid-implementation-intro p { color: var(--muted); }
+.asteroid-implementation-intro p + p { margin-top: 8px; }
+.asteroid-system-list { margin: clamp(14px,2vw,22px) 0 0; }
+.asteroid-system-list > div { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,3fr); gap: 4px 16px; padding-block: 10px; border-top: 1px solid var(--line); }
+.asteroid-system-list dt { font-weight: 750; }
+.asteroid-system-list dd { margin: 0; font-size: 15px; color: var(--muted); }
 .asteroid-implementation-media { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(12px,2vw,24px); margin-top: clamp(16px,2vw,24px); }
 .asteroid-implementation-media img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--night); }
 .asteroid-implementation-media figcaption { display: grid; gap: 2px; padding-top: 8px; color: var(--muted); }
 .asteroid-implementation-media strong { font-size: 15px; color: var(--ink); }
-.asteroid-problem-steps { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(14px,2vw,26px); margin: 16px 0 0; padding-left: 1.35em; }
-.asteroid-problem-steps li { padding-left: 4px; }
-.asteroid-problem-steps li::marker { font-weight: 750; }
-.asteroid-problem-steps h3 { font-size: 16px; letter-spacing: -.02em; }
-.asteroid-problem-steps p { margin-top: 5px; font-size: 14px; color: var(--muted); }
+.asteroid-problem-cases { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(12px,2vw,24px); margin-top: 16px; }
+.asteroid-problem-cases article { padding: clamp(14px,2vw,24px); background: var(--paper); border-radius: 6px; }
+.asteroid-problem-cases h3 { font-size: 18px; letter-spacing: -.02em; }
+.asteroid-problem-cases p { margin-top: 8px; font-size: 15px; color: var(--muted); }
 .work-overview { padding-block: clamp(28px,4vw,56px); }
 .work-overview h2 { font-size: clamp(24px,2.6vw,36px); margin-bottom: clamp(16px,2vw,26px); }
 .practice-overview { padding-bottom: 0; }
@@ -152,7 +156,7 @@ body:has(.project-dialog[open]) { overflow: hidden; }
   .name span { display: none; }
   .hero-grid,.projects article { display: flex; flex-direction: column; align-items: stretch; }
   .hero-grid { padding-block: 20px; gap: 18px; }
-  .asteroid-implementation-intro,.asteroid-implementation-media,.asteroid-problem-steps { grid-template-columns: 1fr; }
+  .asteroid-implementation-intro,.asteroid-implementation-media,.asteroid-system-list > div,.asteroid-problem-cases { grid-template-columns: 1fr; }
   h1 img { width: min(62%,260px); margin-block: 9px; }
   .actions { margin-top: 12px; }
   .projects article { gap: 14px; padding-block: 20px; }
