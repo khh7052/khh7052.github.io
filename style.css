@@ -116,3 +116,4 @@ nav{font-size:13px;gap:13px}
 }
 
 .project-still{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#10191c;border-radius:6px}
+.project-index{display:flex;flex-wrap:wrap;gap:8px 18px;margin:0 0 24px}.project-index a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}.projects article[id]{scroll-margin-top:80px}
