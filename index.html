@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 첫 발사 끊김을 발견하고 워밍업을 비교한 뒤 풀링 범위를 정한 과정을 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=mobile-roles-2">
+<link rel="stylesheet" href="style.css?v=case-gallery">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -30,47 +30,22 @@
 </nav></div></section>
 <section class="case wrap" id="case"><p class="eyebrow ink"><i></i> Asteroid Alert <span>/</span> 개발 사례</p>
 <h2>플레이 화면에서 발견한 문제들</h2>
-<div class="steps" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))">
-<article><span class="seq">소행성 · 생성 방향</span><h3>같은 쪽에서 날아오는 소행성은 왜 같은 각도일까?</h3>
-<p><b>발견</b> 소행성이 생성될 때마다 겉모습의 각도가 달라져야 하는데, 회전이 무작위로 보이지 않아 원인 확인을 요청했습니다.</p>
-<p><b>수정</b> Codex가 생성 코드를 추적해 이동 방향이 초기 회전을 덮어쓰는 지점을 찾았습니다. 궤적을 유지하면서 처음 보이는 각도만 0–360°에서 독립적으로 뽑도록 수정했습니다.</p>
-<p><b>확인</b> 같은 이동 방향으로 조건을 고정한 12개 표본에서 초기 각도가 12.7°부터 359.6°까지 나뉘었습니다.</p></article>
-<article><span class="seq">보스전 · 화면 구성</span><h3>배경 시안이 실제 보스전에서도 자연스러울까?</h3>
-<p><b>발견</b> 보스전 배경의 장식이 부자연스럽다고 짚고, 수정한 시안을 실제 게임 카메라로 확인해 달라고 요청했습니다.</p>
-<p><b>수정</b> 화면은 채워졌지만 게임 안에서는 성운이 어둠에 묻히고 하단의 곧은 띠만 두드러졌습니다. 이 확인을 바탕으로 수정을 요청했고, Codex가 중앙 전투 공간은 어둡게 유지하면서 주변 성운을 밝히고 하단 윤곽을 낮고 불규칙하게 다듬었습니다.</p>
-<p><b>확인</b> 수정본을 메인 씬에 적용하고 보스 카메라 배율에서 배경이 화면 전체를 덮는 것을 확인했습니다.</p></article>
+<div class="case-gallery">
+<article><figure class="rotation-demo" aria-label="같은 방향으로 이동하는 소행성의 초기 각도 예시">
+<div aria-hidden="true"><img src="rubble.webp" alt=""><img src="rubble.webp" alt=""><img src="rubble.webp" alt=""></div>
+<figcaption>같은 이동 방향 → 서로 다른 초기 각도</figcaption></figure>
+<h3>소행성이 같은 각도로 나타났습니다</h3>
+<p>생성 각도가 무작위로 보이지 않아 원인 확인을 요청했습니다. Codex가 이동 방향과 초기 회전을 분리했고, 같은 방향으로 생성한 12개 표본에서 각도가 달라졌습니다.</p></article>
+<article><figure class="camera-demo"><div aria-hidden="true"><i></i></div><figcaption>보스 카메라 구도 · 중앙은 낮은 대비로</figcaption></figure>
+<h3>보스전 배경을 게임 카메라로 다시 봤습니다</h3>
+<p>시안의 장식이 어색해 실제 화면으로 확인을 요청했습니다. 어둠에 묻힌 성운은 밝히고 눈에 띄던 하단 띠는 낮췄습니다. Codex가 수정본을 적용하고 보스 카메라 화면 전체가 채워지는지 확인했습니다.</p></article>
 </div>
-<h2>전투 중 발견하고 검증한 문제들</h2>
-<div class="steps">
-<article><span class="seq">첫 발사 · 워밍업</span><h3>첫 미사일을 쏠 때 왜 멈칫했을까?</h3>
-<p><b>발견</b> 직접 플레이할 때 첫 미사일과 화염이 나타나는 순간 화면이 멈칫했습니다.</p>
-<p><b>시도</b> 두 효과를 미리 준비해 보자고 제안했습니다. 풀링은 켜 둔 채 워밍업만 바꾸고, 매번 플레이를 새로 시작해 첫 한 발을 비교하도록 Codex에 요청했습니다.</p>
-<p><b>확인</b> 발사 함수는 약 1ms 짧아졌습니다. 발사 직후 최장 렌더 간격은 두 조건 모두 약 18.7ms여서, 체감한 끊김의 원인은 특정하기 어려웠습니다.</p></article>
-<article><span class="seq">반복 발사 · 오브젝트 풀링</span><h3>다음 발에도 쓸 오브젝트를 매번 만들어야 할까?</h3>
-<p><b>발견</b> 첫 발사 비용을 살펴본 뒤, 전투가 이어지는 동안 같은 종류의 오브젝트가 반복해서 필요하다는 점에 주목했습니다.</p>
-<p><b>시도</b> 미사일·화염·조준 표식·위성 탄환을 재사용 대상으로 골라 풀링을 요청했습니다. Codex가 구현하고 같은 프리팹 하나를 확보하는 시간을 비교했습니다.</p>
-<p><b>확인</b> 미사일 한 발을 준비하는 데 약 78µs를 아꼈습니다. 기본 화염은 약 9µs 차이로, 재사용 효과는 대상마다 달랐습니다.</p></article>
-<article><span class="seq">동시 발사 · 표적 재탐색</span><h3>미사일 64발이 동시에 적을 다시 찾으면?</h3>
-<p><b>관찰</b> 동시 탐색 검사에서는 한 물리 스텝에 표적 탐색이 최대 64회 몰렸습니다.</p>
-<p><b>시도</b> 최초 탐색 이후에는 미사일마다 다시 탐색하는 시점을 나눠, 같은 조건에서 스텝별 유도 처리 시간을 비교했습니다.</p>
-<p><b>확인</b> 한 스텝의 최대 탐색 횟수는 8회로 줄었습니다. 처리 시간이 긴 스텝의 부담은 줄었고, 중앙값은 오히려 높아졌습니다. 탐색 비용이 여러 스텝으로 분산된 결과입니다.</p></article>
-</div>
-<details><summary>측정 조건과 항목별 결과</summary><div class="detail">
-<p><b>역할</b> · 저는 끊김을 발견하고 비교 조건과 풀링 대상을 정했습니다. Codex가 구현과 측정을 수행했습니다.</p>
-<p><b>측정 환경</b> · 2026.11.21 · Unity 6000.6.3f1 Editor Play · Core i5-10400 · GTX 1660 SUPER</p>
-<table><caption>첫 발사 · 조건별 4회 중앙값</caption><thead><tr><th scope="col">측정 구간</th><th scope="col">워밍업 끔</th><th scope="col">워밍업 켬</th></tr></thead>
-<tbody><tr><th scope="row">첫 발사 함수</th><td>8.18 ms</td><td>7.16 ms</td></tr><tr><th scope="row">발사 직후 최장 렌더 간격</th><td>18.74 ms</td><td>18.71 ms</td></tr></tbody></table>
-<p>매회 Play를 다시 시작해 같은 방향으로 한 발을 쐈습니다. 풀링은 양쪽 모두 켜고 미사일·화염의 워밍업만 바꿨습니다. 발사 직후 6개 렌더 간격 중 최댓값은 끔 18.26–20.09ms, 켬 16.79–21.01ms로 범위가 겹쳤습니다.</p>
-<table><caption>전투 오브젝트 1개 확보 시간 (µs) · 조건별 12회 중앙값</caption>
-<thead><tr><th scope="col">대상</th><th scope="col">새로 생성</th><th scope="col">풀에서 꺼내기</th></tr></thead><tbody>
-<tr><th scope="row">미사일</th><td>89.49</td><td>11.06</td></tr>
-<tr><th scope="row">위성 탄환</th><td>63.04</td><td>8.51</td></tr>
-<tr><th scope="row">조준 표식</th><td>30.00</td><td>6.04</td></tr>
-<tr><th scope="row">기본 화염</th><td>57.88</td><td>49.36</td></tr>
-<tr><th scope="row">얼음 소행성</th><td>210.88</td><td>22.39</td></tr></tbody></table>
-<p>같은 프리팹으로 활성 오브젝트를 얻기까지의 시간을 쟀습니다. 초기 풀 준비와 오브젝트 반납은 측정 구간에서 제외했습니다.</p>
-<p><b>유도 미사일 64발 동시 탐색</b> · 최초 탐색 이후 재탐색 시점을 분산하자 한 물리 스텝에 몰린 탐색이 최대 64회에서 8회로 줄었습니다. 유도 처리 시간의 95백분위는 0.351 → 0.088ms였고, 중앙값은 0.044 → 0.085ms였습니다. 같은 부하를 여러 스텝에 나눈 결과입니다.</p>
-</div></details>
+<h2>전투 중 확인한 세 가지 현상</h2>
+<dl class="combat-notes">
+<dt>첫 발사 끊김</dt><dd>미사일과 화염이 처음 나타날 때 끊김을 느껴 Codex에 워밍업 비교를 요청했습니다. 두 조건의 렌더 간격이 겹쳐 원인은 특정하기 어려웠습니다.</dd>
+<dt>반복 생성</dt><dd>미사일·화염·조준 표식·위성 탄환을 재사용 대상으로 골라 풀링을 요청했습니다. Codex의 비교에서 화염보다 미사일을 준비할 때 시간 차이가 컸습니다.</dd>
+<dt>표적 재탐색</dt><dd>유도 미사일이 동시에 적을 찾으면 한 물리 스텝에 탐색이 몰렸습니다. 재탐색 시점을 나누자 가장 바쁜 스텝의 부담이 줄고 평소 스텝의 부담은 늘었습니다.</dd>
+</dl>
 </section>
 <section class="other"><div class="wrap"><h2>프로젝트 상세</h2><div class="projects">
 <article id="black-chamber"><p class="meta">7인 팀 · Unity <span>/</span> 개발 기간 2025.09 ~ 2025.11</p><h3 lang="en">Black Chamber</h3><p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p>
