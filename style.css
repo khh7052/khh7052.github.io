@@ -97,13 +97,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-technical .asteroid-process-note { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: clamp(18px,2.5vw,28px); padding: 10px 14px; border-left: 3px solid #48867b; border-radius: 0 6px 6px 0; background: #e7f1ef; }
 .asteroid-process-note strong { color: #194e50; }
 .asteroid-process-note span { flex: 1 1 320px; }
-.asteroid-detail-flow { display: grid; gap: 12px; margin: 16px 0 0; padding: 0; list-style: none; }
-.asteroid-detail-flow li { position: relative; padding-left: 18px; }
-.asteroid-detail-flow li::before { content: ""; position: absolute; top: .55em; left: 0; width: 7px; height: 7px; border-radius: 50%; background: #347b74; }
-.asteroid-detail-flow li:not(:last-child)::after { content: ""; position: absolute; top: calc(.55em + 10px); bottom: -18px; left: 3px; border-left: 1px solid #93bdb7; }
-.asteroid-detail-flow li > strong,.asteroid-detail-flow li > span { display: block; }
-.asteroid-detail-flow li > span { margin-top: 2px; color: #384b48; font-size: 15px; }
-.asteroid-detail-flow code { overflow-wrap: anywhere; }
+.asteroid-process-flow code { overflow-wrap: anywhere; }
 @media(max-width:740px){
   .asteroid-disclosure summary { grid-template-columns: minmax(0,1fr) 24px; }
   .asteroid-disclosure-title,.asteroid-disclosure-summary { grid-column: 1; }

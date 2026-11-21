@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-technical-accordion">
+<link rel="stylesheet" href="style.css?v=asteroid-shared-timeline">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -115,7 +115,7 @@
             <span class="asteroid-disclosure-summary">직격 피해를 먼저 적용하고, 강화에 따라 범위 피해와 관통을 처리합니다.</span>
           </summary>
           <div class="asteroid-disclosure-body">
-            <ol class="asteroid-detail-flow" role="list">
+            <ol class="asteroid-process-flow" role="list">
               <li><strong>직격 피해</strong><span>미사일이 맞힌 소행성에 피해를 먼저 적용합니다.</span></li>
               <li><strong>폭발 범위 판정</strong><span>폭발형 미사일은 <code>Physics2D.OverlapCircle</code>로 명중 지점 주변의 소행성을 찾아 범위 피해를 줍니다.</span></li>
               <li><strong>관통 여부 결정</strong><span>이번 충돌에 쓸 관통 횟수가 있으면 계속 날아가고, 없으면 미사일을 회수합니다.</span></li>
@@ -128,7 +128,7 @@
             <span class="asteroid-disclosure-summary">선택한 카드의 능력치·외형·특수 효과를 플레이에 적용합니다.</span>
           </summary>
           <div class="asteroid-disclosure-body">
-            <ol class="asteroid-detail-flow" role="list">
+            <ol class="asteroid-process-flow" role="list">
               <li><strong>카드별 변경 정의</strong><span><code>ScriptableObject</code>에 능력치·외형 변경과 특수 효과를 설정합니다.</span></li>
               <li><strong>선택한 카드 적용</strong><span>공통 적용 코드가 현재 능력치와 외형을 갱신하고 특수 효과를 실행합니다.</span></li>
               <li><strong>다음 발사에 반영</strong><span>미사일 발사 시 갱신된 피해량·관통 횟수·폭발 반경과 외형을 읽습니다.</span></li>
@@ -141,7 +141,7 @@
             <span class="asteroid-disclosure-summary">마우스와 터치로 조준하며, 메뉴를 누른 손가락은 발사에서 제외합니다.</span>
           </summary>
           <div class="asteroid-disclosure-body">
-            <ol class="asteroid-detail-flow" role="list">
+            <ol class="asteroid-process-flow" role="list">
               <li><strong>입력 좌표 읽기</strong><span>PC에서는 마우스 좌표를, 모바일에서는 <strong>Enhanced Touch</strong>로 손가락 좌표를 읽습니다.</span></li>
               <li><strong>조준할 터치 지정</strong><span>전투 화면에서 시작한 손가락 하나만 조준에 사용합니다. UI에서 시작한 터치는 제외합니다.</span></li>
               <li><strong>조준 해제</strong><span>손을 떼거나 게임 상태가 바뀌면 조준을 해제합니다. 연구 화면에서 누른 채 전투로 돌아와도 새 터치 전까지 발사하지 않습니다.</span></li>
@@ -154,7 +154,7 @@
             <span class="asteroid-disclosure-summary">언어 변경을 바로 미리 보고, 적용한 경우에만 설정을 저장합니다.</span>
           </summary>
           <div class="asteroid-disclosure-body">
-            <ol class="asteroid-detail-flow" role="list">
+            <ol class="asteroid-process-flow" role="list">
               <li><strong>언어 미리 보기</strong><span>설정에서 한·영을 고르면 현재 로캘을 바꿉니다.</span></li>
               <li><strong>화면 문구 갱신</strong><span><code>SelectedLocaleChanged</code> 이벤트에 맞춰 도감과 연구 슬롯 문구를 갱신합니다.</span></li>
               <li><strong>적용 여부 확인</strong><span>적용하면 <code>PlayerPrefs</code>에 저장하고, 적용 없이 닫으면 설정을 열기 전 언어로 돌립니다.</span></li>
