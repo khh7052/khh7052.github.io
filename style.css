@@ -19,8 +19,8 @@ header,.hero,footer { background: var(--night); color: #faf8f0; }
 .head,.foot,.head nav,.links,.movie figcaption { display: flex; align-items: center; }
 .head { justify-content: space-between; min-height: 68px; border-bottom: 1px solid #474943; }
 .head nav,.links { gap: 22px; }
-.head a,.button,.project-index a { text-decoration: none; }
-.head nav a:hover,.links a:hover,.project-index a:hover strong { text-decoration: underline; }
+.head a,.button,.project-card { text-decoration: none; }
+.head nav a:hover,.links a:hover,.project-card:hover strong { text-decoration: underline; }
 .name { font-size: 20px; font-weight: 800; }
 .name span,.head nav { font-size: 14px; }
 .name span { margin-left: 10px; color: #d3d2c6; font-weight: 500; }
@@ -46,7 +46,12 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .button:hover { background: #ffe29a; }
 .work-overview { padding-block: clamp(28px,4vw,56px); }
 .work-overview h2 { font-size: clamp(24px,2.6vw,36px); margin-bottom: clamp(16px,2vw,26px); }
-.project-index { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: clamp(12px,1.6vw,24px); }
+.practice-overview { padding-bottom: 0; }
+.practice-overview .project-card { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); max-width: 800px; }
+.practice-overview .project-card img { border-radius: 7px 0 0 7px; }
+.practice-overview .project-card-info { align-content: center; grid-template-rows: auto auto auto; }
+.practice-overview .project-card strong { font-size: clamp(21px,2vw,28px); }
+.project-index { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(12px,1.6vw,24px); }
 .project-card { display: flex; flex-direction: column; background: #fffef9; border: 1px solid var(--line); border-radius: 8px; }
 .project-card:hover { border-color: var(--muted); }
 .project-card img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; border-radius: 7px 7px 0 0; background: var(--night); }
@@ -95,6 +100,8 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
   body { font-size: 15px; }
   .head { min-height: 56px; }
   .head nav { gap: 12px; font-size: 13px; }
+  .practice-overview .project-card { grid-template-columns: 1fr; }
+  .practice-overview .project-card img { border-radius: 7px 7px 0 0; }
   .name { font-size: 17px; }
   .name span { display: none; }
   .hero-grid,.projects article { display: flex; flex-direction: column; align-items: stretch; }
