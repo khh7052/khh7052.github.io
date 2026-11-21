@@ -49,7 +49,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .work-overview h2 { font-size: 20px; margin-bottom: 14px; }
 .project-index { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 16px; }
 .project-index a { display: grid; align-content: start; gap: 4px; }
-.project-index img { display: block; width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover; border-radius: 3px; }
+.project-index img { display: block; width: 100%; height: auto; aspect-ratio: 3.8; object-fit: cover; border-radius: 3px; }
 .project-index strong { font-size: clamp(16px,1.45vw,21px); line-height: 1.25; margin-top: 5px; }
 .project-index span { color: #d0d2c9; font-size: 14px; }
 .scene-gallery,.other { padding-block: clamp(32px,4vw,64px); }
@@ -71,8 +71,6 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .projects { margin-top: 24px; }
 .projects article { align-items: start; grid-template-areas: "heading heading" "media copy"; row-gap: 16px; padding-block: 32px; }
 .project-heading { grid-area: heading; }
-.project-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 20px; margin-bottom: 6px; }
-.project-title .team-role { max-width: 40ch; font-size: 15px; color: #4b5649; }
 .project-heading h3 { font-size: clamp(28px,3vw,44px); margin-block: 4px; }
 .project-media { grid-area: media; }
 .project-copy { grid-area: copy; }
@@ -99,13 +97,18 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
   h1 img { width: min(62%,260px); margin-block: 9px; }
   .actions { margin-top: 12px; }
   .project-index { grid-template-columns: 1fr; gap: 0; }
-  .project-index a { grid-template-columns: 112px 1fr; gap: 2px 12px; padding: 12px 0; border-top: 1px solid #424743; }
-  .project-index img { height: auto; aspect-ratio: 16/9; grid-row: span 2; align-self: center; }
+  .project-index a { grid-template-columns: 64px 1fr; gap: 2px 10px; padding: 6px 0; border-top: 1px solid #424743; }
+  .project-index img { height: 100%; min-height: 46px; aspect-ratio: auto; grid-row: span 2; }
   .project-index strong { margin-top: 0; }
   .project-index span { line-height: 1.4; }
   .projects article { gap: 14px; padding-block: 20px; }
   .foot { align-items: start; flex-direction: column; }
 }
 @media(max-width:640px){
-  .movie video { max-height: none; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; align-items: center; }
+  .lead { grid-column: 1; }
+  .movie { grid-column: 2; }
+  h1 img { width: 100%; }
+  .lead .meta { font-size: 12px; }
+  .pitch { font-size: 14px; }
 }
