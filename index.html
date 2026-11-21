@@ -17,17 +17,17 @@
 <div class="lead"><p class="eyebrow"><i></i> 대표작 <span>/</span> 개인 프로젝트</p>
 <h1 id="title"><img src="title.webp" alt="Asteroid Alert"></h1>
 <p class="pitch">미사일로 소행성을 요격하고, 연구와 증강을 골라 중앙 행성을 지키는 2D 디펜스 로그라이트.</p>
-<p class="hero-contribution">플레이 중 <strong>첫 미사일 발사 순간의 끊김</strong>을 발견했습니다. Codex에 워밍업 전후 비교를 요청한 뒤, 반복 생성되는 미사일과 이펙트를 골라 풀링을 요청했습니다.</p>
+<p class="hero-contribution"><strong>첫 미사일을 쏠 때 화면이 멈칫했습니다.</strong> 직접 발견한 이 문제를 계기로 첫 발사의 준비 비용과 전투 중 반복 생성 비용을 나눠 살펴봤습니다.</p>
 <div class="actions"><a class="button primary" href="https://play.unity.com/en/games/6e18b9f2-b865-4564-8499-95e3d7a0a68f/asteroid-alert">게임 플레이 ↗</a><a class="text-link" href="#case">첫 발사 최적화 과정 ↓</a></div>
 <p class="meta">Unity · C# <span>/</span> 2026.06 개발 시작</p></div>
 <figure class="movie"><video controls playsinline preload="none" poster="combat.webp" aria-label="Asteroid Alert 트레일러"><source src="gameplay.mp4?v=0695120e" type="video/mp4"></video><figcaption><span>트레일러</span><span>00:28</span></figcaption></figure>
 </div></section>
 <section class="case wrap" id="case"><p class="eyebrow ink"><i></i> Asteroid Alert <span>/</span> 전투 성능</p>
-<h2>첫 미사일을 쏘는 순간,<br>화면이 끊겼습니다.</h2>
+<h2>첫 발사의 끊김에서<br>미사일 재사용까지</h2>
 <div class="steps">
-<article><span class="seq">01 / 발견</span><h3>첫 미사일에서 끊김을 발견했습니다</h3><p>직접 플레이하다 미사일과 화염이 처음 나타나는 순간 화면이 멈칫하는 것을 봤습니다. 두 효과를 발사 전에 미리 준비해 보자고 제안했습니다.</p></article>
-<article><span class="seq">02 / 비교</span><h3>워밍업을 켜고 끄며 비교했습니다</h3><p>Codex에 같은 조건에서 첫 발사를 비교하도록 요청했습니다. 최신 측정에서 발사 함수는 8.18 → 7.16ms로 짧아졌지만, 발사 직후 가장 긴 렌더 간격은 양쪽 모두 약 18.7ms였습니다.</p></article>
-<article><span class="seq">03 / 결정</span><h3>반복 생성되는 대상을 골랐습니다</h3><p>발사 때마다 무엇을 새로 만드는지 살펴보고, 미사일·화염·조준 표식·위성 탄환은 미리 만들어 재사용하도록 요청했습니다.</p></article>
+<article><span class="seq">01 / 발견</span><h3>미사일과 화염을 발사 전에 준비하면?</h3><p>직접 플레이하다 미사일과 화염이 처음 나타나는 순간 화면이 멈칫하는 것을 봤습니다. 두 효과를 발사 전에 미리 준비해 보자고 제안했습니다.</p></article>
+<article><span class="seq">02 / 비교</span><h3>같은 첫 발사를 두 조건에서 비교</h3><p>Codex에 풀링을 켠 채 워밍업만 바꿔 달라고 요청했습니다. Editor에서 조건별 4회 측정한 첫 발사 함수의 중앙값은 8.18 → 7.16 ms였습니다. 직후 최장 렌더 간격은 양쪽 모두 약 18.7 ms로, 플레이 중 느낀 끊김의 원인은 이 비교만으로 특정하기 어려웠습니다.</p></article>
+<article><span class="seq">03 / 결정</span><h3>전투 중 반복해서 꺼내는 대상에 풀링 적용</h3><p>미사일·화염·조준 표식·위성 탄환을 재사용 대상으로 골라 풀링을 요청했습니다. Codex가 구현과 측정을 맡았고, 같은 프리팹 하나를 새로 생성할 때와 풀에서 꺼낼 때의 비용을 비교했습니다.</p></article>
 </div>
 <div class="evidence">
 <div class="finding"><p class="eyebrow">미사일 한 발을 확보하는 시간</p><strong>87.6<span>% 감소</span></strong><p>같은 미사일 프리팹을 풀에서 꺼낼 때<br>한 발당 약 78µs를 아꼈습니다.</p></div>
@@ -64,7 +64,7 @@
 <iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 <p class="team-role"><b>담당</b> 적 AI · 소음 전파 · 적과 무기 데이터 연동</p>
 <h4>벽을 돌아 들리는 총성까지 계산하는 적 AI</h4>
-<p class="team-method">총성이 직선으로 전달될 때와 벽을 돌아갈 때의 세기를 각각 계산했습니다. 우회 거리는 NavMesh로 구하고, 더 크게 들린 값을 적의 반응 기준과 비교했습니다. 수색·의심·공격 행동은 상태 머신으로 구현했습니다.</p>
+<p class="team-method">한 발의 총성에 대해 직선 경로와 벽을 우회하는 경로의 소리 세기를 각각 계산했습니다. 우회 경로의 길이는 NavMesh로 구했습니다. 두 값 중 큰 값을 적의 청각 기준과 비교하고, 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</p>
 <p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
 <div class="links">
 <a href="https://nextthewat.itch.io/black-chamber">게임 다운로드 (itch.io) ↗</a>
@@ -74,7 +74,7 @@
 <iframe class="project-video" width="560" height="315" loading="lazy" title="VR Spell 마법 시전 영상" src="https://www.youtube-nocookie.com/embed/dDI8KQEFRR0?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 <p class="team-role"><b>담당</b> 단독 프로그래머 · 마법 입력부터 웨이브 진행까지</p>
 <h4>손을 떼고 이어 그려도 하나의 주문으로</h4>
-<p class="team-method">Meta XR SDK로 손가락 관절을 추적하고, 한 획을 인식하던 $1 Recognizer를 여러 획을 처리하는 $Q Recognizer로 교체했습니다. 획 사이에 손을 떼어도 완성된 문양에 맞는 마법이 발동합니다.</p>
+<p class="team-method">초기에는 주문 하나를 한 획에 그려야 했습니다. Meta XR SDK로 추적한 손가락 궤적을 여러 획으로 인식하도록 $1 Recognizer를 $Q Recognizer로 교체했습니다. 이제 손을 뗐다가 다음 획을 그려도 하나의 주문이 발동합니다.</p>
 <p class="team-extra"><b>전투 진행</b> 몬스터 AI와 웨이브별 등장을 구현하고, 레벨업하면 능력치를 강화할 수 있게 했습니다.</p>
 <div class="links"><a href="https://www.youtube.com/watch?v=dDI8KQEFRR0">YouTube에서 보기 ↗</a></div></article>
 <article id="rabbitgun">
@@ -83,15 +83,16 @@
 <img class="project-still" src="rabbitgun.webp" width="1080" height="608" loading="lazy" alt="RabbitGun 플레이 화면">
 <p class="team-role"><b>담당</b> 단독 프로그래머 · 총기 조작 · 인벤토리 · 저장과 불러오기</p>
 <h4>다시 시작해도 이어지는 소지품과 생존 상태</h4>
-<p class="team-method">플레이어 위치와 소지품에 더해 적의 상태, 게임 속 시간, 허기와 갈증까지 저장하도록 범위를 정했습니다. 조준·재장전과 퀵슬롯 장착은 플레이할 때 기대하는 동작과 수정 방향을 Codex에 전달했습니다.</p>
+<p class="team-method">이어하기에 필요한 상태를 플레이어와 월드로 나눴습니다. 플레이어의 위치·소지품·허기·갈증과 함께 적의 상태와 게임 속 시간까지 저장 범위에 포함했습니다.</p>
+<p class="team-extra"><b>전투 조작</b> 조준·재장전과 퀵슬롯 장착 시 기대하는 동작을 정하고 Codex에 수정 방향을 전달했습니다.</p>
 </article>
 <article id="earthquake-vr">
 <p class="meta">4인 팀 · Unity · 2019.03–11</p><h3 lang="en">Survival Earthquake in VR</h3>
 <p class="team-intro">가상 공간에서 주변 사물을 조작하고 다른 참가자와 함께 지진 대피를 연습하는 VR 교육 콘텐츠.</p>
 <img class="project-still" src="earthquake-vr.webp" width="456" height="229" loading="lazy" alt="VR 지진 대피 체험의 가상 공간">
 <p class="team-role"><b>담당</b> VR 상호작용 · 멀티플레이 · 시팅 시뮬레이터 연동</p>
-<h4>여러 참가자가 함께 대피하는 VR 공간</h4>
-<p class="team-method">HTC VIVE로 가상 공간의 사물을 조작하는 기능을 구현하고, 여러 참가자가 함께 대피할 수 있도록 Photon으로 멀티플레이를 연결했습니다. 체험용 좌석 장치는 시팅 시뮬레이터 API를 통해 Unity와 연동했습니다.</p>
+<h4>손으로 사물을 조작하고 함께 대피하는 VR 체험</h4>
+<p class="team-method">HTC VIVE로 사물을 조작하는 기능을 구현했습니다. 참가자들이 같은 가상 공간에서 대피하도록 Photon으로 멀티플레이를 구성하고, 체험에 쓰는 좌석 장치는 시팅 시뮬레이터 API로 Unity에 연결했습니다.</p>
 <p class="team-extra"><b>팀 수상</b> 2019 공학페스티벌 창의적 종합설계 경진대회 한국공학교육학회장상</p>
 </article></div></div></section>
 </main><footer id="contact"><div class="wrap foot"><div><p class="eyebrow">연락처</p><h2>김혜현</h2><p>Unity 게임 클라이언트 개발자</p></div><div class="contact"><a href="mailto:khh7052@naver.com">khh7052@naver.com ↗</a><a href="https://github.com/khh7052">GitHub ↗</a></div></div></footer>
