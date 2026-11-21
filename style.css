@@ -102,3 +102,11 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
   .projects article { gap: 14px; padding-block: 20px; }
   .foot { align-items: start; flex-direction: column; }
 }
+@media(max-width:640px){
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; align-items: center; }
+  .lead { grid-column: 1; }
+  .movie { grid-column: 2; }
+  h1 img { width: 100%; }
+  .lead .meta { font-size: 12px; }
+  .pitch { font-size: 14px; }
+}
