@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10191c">
-<meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 첫 발사 끊김을 발견하고 워밍업을 비교한 뒤 풀링 범위를 정한 과정을 소개합니다.">
+<meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 체력 표시와 보스 생성 위치를 디버깅한 과정, 전투 처리와 이미지 용량 최적화 사례를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
 <link rel="stylesheet" href="style.css?v=play-decisions">
@@ -29,26 +29,26 @@
 <a href="#earthquake-vr"><img src="earthquake-vr.webp" alt="" width="320" height="180"><strong lang="en">Survival Earthquake in VR</strong><span>VR 상호작용 · 멀티플레이 · 체험 장치 연동</span></a>
 </nav></div></section>
 <section class="case wrap" id="case"><p class="eyebrow ink"><i></i> Asteroid Alert <span>/</span> 개발 사례</p>
-<h2>행성 방어의 난이도를 다시 설계한 과정</h2>
-<p class="case-intro">플레이어는 중앙의 행성을 지키며 소행성을 쏴서 얻은 자원으로 무기를 강화합니다. 직접 플레이하면서 방어 방향을 고르는 순간과, 무기가 강해진 뒤의 전투를 다시 살펴봤습니다.</p>
+<h2>플레이 중 발견한 클라이언트 버그</h2>
 <div class="case-gallery">
 <article>
-<h3>보상이 같다면 누가 사방을 막을까?</h3>
-<figure><img class="case-shot" src="route-choice.webp" width="1080" height="608" alt="한쪽에 집중되는 접근로와 처치 보상이 붙은 네 방향 접근로를 고르는 게임 화면" loading="lazy"><figcaption>다음 공격이 들어올 방향을 고르는 화면</figcaption></figure>
-<p>한쪽에서 오는 적은 한 곳에 조준을 집중할 수 있습니다. 네 방향을 고르면 사방을 번갈아 막아야 하는데, 적을 잡아 얻는 보상은 같았습니다. 플레이하며 어려운 쪽을 고를 이유가 없다고 짚었습니다.</p>
-<p><b>내가 정한 규칙</b> 네 방향을 택하면 그 공세에서 적을 처치해 얻는 연구 자원을 25% 더 주기로 했습니다. Codex가 구현한 뒤 추가 보상이 실제로 들어오고, 다음 공세부터 원래 보상으로 돌아오는 것을 검수했습니다.</p>
+<h3>체력이 1%인데 왜 숫자는 1.01일까?</h3>
+<figure><img class="case-shot" src="planet-health-check.webp" width="1080" height="608" alt="수정 후 파괴 직전 행성에 0.5%, 화면 아래에 체력 0.01/2가 표시된 게임 화면" loading="lazy"><figcaption>수정 후 같은 순간의 두 표시 · 행성 위 0.5% / 하단 0.01/2</figcaption></figure>
+<p>이 게임에서 행성은 피격될수록 작아지고 일정 크기에서 파괴됩니다. 플레이 중 행성 위에는 체력이 1%로 보이는데 하단에는 1.01이 남았다고 나왔습니다. 저는 하단 숫자에 파괴 시점의 크기까지 포함됐다고 보고, 체력과 관련된 표시를 전부 같은 기준으로 고쳐 달라고 요청했습니다.</p>
+<p><b>수정과 검수</b> Codex가 파괴 기준을 뺀 실제 잔량으로 숫자·체력바·백분율을 통일했습니다. 최대 체력, 절반, 파괴 직전, 파괴 순간을 검사했습니다. 내부 크기 1.01일 때 남은 체력은 0.01/2이고, 두 표시 모두 0.5%에 해당합니다.</p>
 </article>
 <article>
-<h3>왜 중반부터 행성이 한 대도 맞지 않을까?</h3>
-<figure><img class="case-shot" src="midgame-test.webp" width="1080" height="608" alt="23번째 공세에서 행성 주변을 여러 방향으로 날아가는 미사일" loading="lazy"><figcaption>처음부터 무기를 강화하며 진행한 자동 플레이 검수 장면</figcaption></figure>
-<p>직접 해 보니 최종 무기를 얻기 전에도 긴장감이 사라졌습니다. Codex에 처음부터 한 판씩 진행하며 원인을 좁히도록 요청했습니다. 자동 조준으로 검수한 10판 중 두 판은 중반에 마지막 피해를 입고 30번째 공세까지 살아남았습니다.</p>
-<p><b>내가 정한 조정 방향</b> 발사 수·관통·연사 효과를 따로 비교한 뒤, 여러 발을 얻을 때 한 발의 위력을 낮추기로 했습니다. Codex가 실제 탄환에 적용된 피해를 검증했습니다. 재검수에서도 중반 이후 무피해로 끝난 판이 있어, 난이도 조정에는 과제가 남았습니다.</p>
+<h3>보스가 화면이 넓어지기도 전에 가까이 나타났습니다</h3>
+<figure><img class="case-shot" src="boss-zoom-check.webp" width="1080" height="608" alt="보스 등장 후 카메라가 뒤로 빠져 중앙 행성 주위의 넓은 전장이 보이는 검수 화면" loading="lazy"><figcaption>보스전 시야 확대 검수 · 당시 설정에서 등장 거리 9.5 → 17.1 유닛</figcaption></figure>
+<p>마지막 보스는 멀리서 행성으로 다가와야 했습니다. 저는 등장 순간을 보고 카메라가 아직 뒤로 빠지는 중인데 보스 위치를 먼저 정해, 좁은 시야의 가장자리에 생성된다는 점을 짚었습니다.</p>
+<p><b>수정과 검수</b> 등장 방향을 유지하고, 거리를 계산할 때에는 카메라 이동이 끝난 뒤의 화면 크기를 사용하도록 Codex가 수정했습니다. 실제 보스 생성부터 시야 확대, 전투 종료 후 원래 시점으로 복귀하는 과정까지 확인했습니다.</p>
 </article>
 </div>
-<h2>전투 중 직접 짚은 두 순간</h2>
+<h2>전투 처리와 이미지 용량 최적화</h2>
 <dl class="combat-notes">
-<dt>너무 가까이 나타난 보스</dt><dd>마지막 보스는 멀리서 행성으로 다가오도록 기획했습니다. 실제로는 카메라가 뒤로 빠지는 도중의 좁은 화면을 기준으로 보스가 생성되는 점을 짚었습니다. Codex가 카메라 이동이 끝난 화면을 기준으로 등장 거리를 계산하도록 고치고, 보스 등장과 전투 후 시점 복귀를 확인했습니다.</dd>
-<dt>첫 미사일을 쏠 때의 끊김</dt><dd>첫 발사 때 화면이 멈칫해 미사일과 화염을 미리 준비한 경우와 비교해 달라고 요청했습니다. 화면 갱신 간격은 두 조건이 겹쳤습니다. 이어 전투 중 반복 생성하는 대상을 골라 재사용을 요청했고, Codex의 검사에서 미사일 한 발을 준비하는 비용이 줄어든 것을 확인했습니다.</dd>
+<dt>첫 발사와 반복 생성</dt><dd>첫 미사일을 쏠 때 멈칫해 미사일과 화염을 미리 준비한 경우와 비교해 달라고 요청했습니다. 워밍업 전후 화면 갱신 간격의 범위가 겹쳐 체감한 끊김의 원인은 특정하기 어려웠습니다. 이어 미사일과 이펙트 등 재사용할 대상을 골라 풀링을 요청했고, Codex의 Unity Editor 검사에서 미사일 한 발을 확보하는 시간이 줄었습니다.</dd>
+<dt>웨이브 안내 아이콘</dt><dd>화면에 18~20픽셀로 표시되는 아이콘의 원본이 1254×1254픽셀이었습니다. 보스·보급 등 아이콘 4개를 128×128로 줄이도록 요청했습니다. 네 PNG 파일 합계는 약 <strong>3.01 MiB → 38.3 KiB</strong>가 됐고, 기존 UI 참조와 투명도를 유지했습니다.</dd>
+<dt>일반 소행성 이미지</dt><dd>작게 그려지는 일반 소행성 6종은 1254×1254에서 512×512로 축소하도록 요청했습니다. 여섯 PNG 파일 합계는 약 <strong>16.4 MiB → 2.54 MiB</strong>가 됐습니다. Codex가 스프라이트 영역과 월드 단위당 픽셀 수도 비례 조정해 게임 속 크기 차이를 최대 0.17%로 유지하고 프리팹 참조를 확인했습니다.</dd>
 </dl>
 </section>
 <section class="other"><div class="wrap"><h2>프로젝트 상세</h2><div class="projects">
