@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 첫 발사 끊김을 발견하고 워밍업을 비교한 뒤 풀링 범위를 정한 과정을 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=project-index-1">
+<link rel="stylesheet" href="style.css?v=project-roles-1">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -17,6 +17,7 @@
 <div class="lead"><p class="eyebrow"><i></i> 대표작 <span>/</span> 개인 프로젝트</p>
 <h1 id="title"><img src="title.webp" alt="Asteroid Alert"></h1>
 <p class="pitch">미사일로 소행성을 요격하고, 연구와 증강을 골라 중앙 행성을 지키는 2D 디펜스 로그라이트.</p>
+<p class="hero-contribution">플레이 중 <strong>첫 미사일 발사 순간의 끊김</strong>을 발견했습니다. Codex에 워밍업 전후 비교를 요청한 뒤, 반복 생성되는 미사일과 이펙트를 골라 풀링을 요청했습니다.</p>
 <div class="actions"><a class="button primary" href="https://play.unity.com/en/games/6e18b9f2-b865-4564-8499-95e3d7a0a68f/asteroid-alert">게임 플레이 ↗</a><a class="text-link" href="#case">첫 발사 최적화 과정 ↓</a></div>
 <p class="meta">Unity · C# <span>/</span> 2026.06 개발 시작</p></div>
 <figure class="movie"><video controls playsinline preload="none" poster="combat.webp" aria-label="Asteroid Alert 트레일러"><source src="gameplay.mp4?v=0695120e" type="video/mp4"></video><figcaption><span>트레일러</span><span>00:28</span></figcaption></figure>
@@ -52,11 +53,17 @@
 <p><b>유도 미사일 64발 동시 탐색</b> · 최초 탐색 이후 재탐색 시점을 분산하자 한 물리 스텝에 몰린 탐색이 최대 64회에서 8회로 줄었습니다. 유도 처리 시간의 95백분위는 0.351 → 0.088ms였고, 중앙값은 0.044 → 0.085ms였습니다. 같은 부하를 여러 스텝에 나눈 결과입니다.</p>
 </div></details>
 </section>
-<section id="projects" class="other"><div class="wrap"><h2>함께 만든 게임</h2><nav class="project-index" aria-label="팀 프로젝트 바로가기"><a href="#black-chamber">Black Chamber</a><a href="#vr-spell">VR Spell</a><a href="#rabbitgun">RabbitGun</a><a href="#earthquake-vr">Survival Earthquake in VR</a></nav><div class="projects">
+<section id="projects" class="other"><div class="wrap"><h2>함께 만든 게임</h2>
+<nav class="project-index" aria-label="작품과 담당 역할">
+<a href="#black-chamber"><strong lang="en">Black Chamber</strong><span>적 AI · 총성에 반응하는 수색과 전투</span></a>
+<a href="#vr-spell"><strong lang="en">VR Spell</strong><span>단독 프로그래머 · 손으로 그린 주문 인식</span></a>
+<a href="#rabbitgun"><strong lang="en">RabbitGun</strong><span>단독 프로그래머 · 총기 조작과 생존 상태 저장</span></a>
+<a href="#earthquake-vr"><strong lang="en">Survival Earthquake in VR</strong><span>VR 상호작용 · 멀티플레이 · 체험 장치 연동</span></a>
+</nav><div class="projects">
 <article id="black-chamber"><p class="meta">7인 팀 · Unity · 2025</p><h3 lang="en">Black Chamber</h3><p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p>
 <iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
 <p class="team-role"><b>담당</b> 적 AI · 소음 전파 · 적과 무기 데이터 연동</p>
-<h4>벽 뒤의 총성을 적은 어떻게 들을까?</h4>
+<h4>벽을 돌아 들리는 총성까지 계산하는 적 AI</h4>
 <p class="team-method">총성이 직선으로 전달될 때와 벽을 돌아갈 때의 세기를 각각 계산했습니다. 우회 거리는 NavMesh로 구하고, 더 크게 들린 값을 적의 반응 기준과 비교했습니다. 수색·의심·공격 행동은 상태 머신으로 구현했습니다.</p>
 <p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
 <div class="links">
@@ -75,7 +82,7 @@
 <p class="team-intro">무기와 아이템을 챙기고 허기와 갈증을 관리하며 살아남는 2D 생존 슈팅.</p>
 <img class="project-still" src="rabbitgun.webp" width="1080" height="608" loading="lazy" alt="RabbitGun 플레이 화면">
 <p class="team-role"><b>담당</b> 단독 프로그래머 · 총기 조작 · 인벤토리 · 저장과 불러오기</p>
-<h4>게임을 다시 켜면 무엇이 남아야 할까?</h4>
+<h4>다시 시작해도 이어지는 소지품과 생존 상태</h4>
 <p class="team-method">플레이어 위치와 소지품에 더해 적의 상태, 게임 속 시간, 허기와 갈증까지 저장하도록 범위를 정했습니다. 조준·재장전과 퀵슬롯 장착은 플레이할 때 기대하는 동작과 수정 방향을 Codex에 전달했습니다.</p>
 </article>
 <article id="earthquake-vr">
@@ -83,7 +90,7 @@
 <p class="team-intro">가상 공간에서 주변 사물을 조작하고 다른 참가자와 함께 지진 대피를 연습하는 VR 교육 콘텐츠.</p>
 <img class="project-still" src="earthquake-vr.webp" width="456" height="229" loading="lazy" alt="VR 지진 대피 체험의 가상 공간">
 <p class="team-role"><b>담당</b> VR 상호작용 · 멀티플레이 · 시팅 시뮬레이터 연동</p>
-<h4>같은 대피 공간에서 함께 움직이도록</h4>
+<h4>여러 참가자가 함께 대피하는 VR 공간</h4>
 <p class="team-method">HTC VIVE로 가상 공간의 사물을 조작하는 기능을 구현하고, 여러 참가자가 함께 대피할 수 있도록 Photon으로 멀티플레이를 연결했습니다. 체험용 좌석 장치는 시팅 시뮬레이터 API를 통해 Unity와 연동했습니다.</p>
 <p class="team-extra"><b>팀 수상</b> 2019 공학페스티벌 창의적 종합설계 경진대회 한국공학교육학회장상</p>
 </article></div></div></section>
