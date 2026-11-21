@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 체력 표시와 보스 생성 위치를 디버깅한 과정, 전투 처리와 이미지 용량 최적화 사례를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=play-decisions">
+<link rel="stylesheet" href="style.css?v=folio-2">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -17,8 +17,8 @@
 <div class="lead"><p class="eyebrow"><i></i> 대표작 <span>/</span> 개인 프로젝트</p>
 <h1 id="title"><img src="title.webp" alt="Asteroid Alert"></h1>
 <p class="pitch">미사일로 소행성을 요격하고, 연구와 증강을 골라 중앙 행성을 지키는 2D 디펜스 로그라이트.</p>
-<div class="actions"><a class="button primary" href="https://play.unity.com/en/games/6e18b9f2-b865-4564-8499-95e3d7a0a68f/asteroid-alert">게임 플레이 ↗</a></div>
-<p class="meta">Unity · C# <span>/</span> 개발 기간 2026.08 ~ 2026.10</p></div>
+<p class="meta">Unity · C# <span>/</span> 개발 기간 2026.08 ~ 2026.10</p>
+<div class="actions"><a class="button primary" href="https://play.unity.com/en/games/6e18b9f2-b865-4564-8499-95e3d7a0a68f/asteroid-alert">게임 플레이 ↗</a></div></div>
 <figure class="movie"><video controls playsinline preload="none" poster="combat.webp" aria-label="Asteroid Alert 트레일러"><source src="gameplay.mp4?v=0695120e" type="video/mp4"></video><figcaption><span>트레일러</span><span>00:28</span></figcaption></figure>
 </div></section>
 <section id="projects" class="work-overview"><div class="wrap"><h2>함께 만든 게임</h2>
@@ -29,63 +29,53 @@
 <a href="#earthquake-vr"><img src="earthquake-vr.webp" alt="" width="320" height="180"><strong lang="en">Survival Earthquake in VR</strong><span>VR 상호작용 · 멀티플레이 · 체험 장치 연동</span></a>
 </nav></div></section>
 <section class="case wrap" id="case"><p class="eyebrow ink"><i></i> Asteroid Alert <span>/</span> 개발 사례</p>
-<h2>플레이 중 발견한 클라이언트 버그</h2>
+<h2>클라이언트 디버깅</h2>
 <div class="case-gallery">
-<article>
-<h3>체력이 1%인데 왜 숫자는 1.01일까?</h3>
-<figure><img class="case-shot" src="planet-health-check.webp" width="1080" height="608" alt="수정 후 파괴 직전 행성에 0.5%, 화면 아래에 체력 0.01/2가 표시된 게임 화면" loading="lazy"><figcaption>수정 후 같은 순간의 두 표시 · 행성 위 0.5% / 하단 0.01/2</figcaption></figure>
+<article><figure><img class="case-shot" src="planet-health-check.webp" width="1080" height="608" alt="수정 후 파괴 직전 행성에 0.5%, 화면 아래에 체력 0.01/2가 표시된 게임 화면" loading="lazy"><figcaption>수정 후 같은 순간의 두 표시 · 행성 위 0.5% / 하단 0.01/2</figcaption></figure><div class="case-copy"><h3>체력이 1%인데 왜 숫자는 1.01일까?</h3>
 <p>이 게임에서 행성은 피격될수록 작아지고 일정 크기에서 파괴됩니다. 플레이 중 행성 위에는 체력이 1%로 보이는데 하단에는 1.01이 남았다고 나왔습니다. 저는 하단 숫자에 파괴 시점의 크기까지 포함됐다고 보고, 체력과 관련된 표시를 전부 같은 기준으로 고쳐 달라고 요청했습니다.</p>
 <p><b>수정과 검수</b> Codex가 파괴 기준을 뺀 실제 잔량으로 숫자·체력바·백분율을 통일했습니다. 최대 체력, 절반, 파괴 직전, 파괴 순간을 검사했습니다. 내부 크기 1.01일 때 남은 체력은 0.01/2이고, 두 표시 모두 0.5%에 해당합니다.</p>
-</article>
-<article>
-<h3>보스가 화면이 넓어지기도 전에 가까이 나타났습니다</h3>
-<figure><img class="case-shot" src="boss-zoom-check.webp" width="1080" height="608" alt="보스 등장 후 카메라가 뒤로 빠져 중앙 행성 주위의 넓은 전장이 보이는 검수 화면" loading="lazy"><figcaption>보스전 시야 확대 검수 · 당시 설정에서 등장 거리 9.5 → 17.1 유닛</figcaption></figure>
+</div></article>
+<article><figure><img class="case-shot" src="boss-zoom-check.webp" width="1080" height="608" alt="보스 등장 후 카메라가 뒤로 빠져 중앙 행성 주위의 넓은 전장이 보이는 검수 화면" loading="lazy"><figcaption>보스전 시야 확대 검수 · 당시 설정에서 등장 거리 9.5 → 17.1 유닛</figcaption></figure><div class="case-copy"><h3>보스가 화면이 넓어지기도 전에 가까이 나타났습니다</h3>
 <p>마지막 보스는 멀리서 행성으로 다가와야 했습니다. 저는 등장 순간을 보고 카메라가 아직 뒤로 빠지는 중인데 보스 위치를 먼저 정해, 좁은 시야의 가장자리에 생성된다는 점을 짚었습니다.</p>
 <p><b>수정과 검수</b> 등장 방향을 유지하고, 거리를 계산할 때에는 카메라 이동이 끝난 뒤의 화면 크기를 사용하도록 Codex가 수정했습니다. 실제 보스 생성부터 시야 확대, 전투 종료 후 원래 시점으로 복귀하는 과정까지 확인했습니다.</p>
-</article>
+</div></article>
 </div>
-<h2>전투 처리와 이미지 용량 최적화</h2>
-<dl class="combat-notes">
-<dt>첫 발사와 반복 생성</dt><dd>첫 미사일을 쏠 때 멈칫해 미사일과 화염을 미리 준비한 경우와 비교해 달라고 요청했습니다. 워밍업 전후 화면 갱신 간격의 범위가 겹쳐 체감한 끊김의 원인은 특정하기 어려웠습니다. 이어 미사일과 이펙트 등 재사용할 대상을 골라 풀링을 요청했고, Codex의 Unity Editor 검사에서 미사일 한 발을 확보하는 시간이 줄었습니다.</dd>
-<dt>웨이브 안내 아이콘</dt><dd>화면에 18~20픽셀로 표시되는 아이콘의 원본이 1254×1254픽셀이었습니다. 보스·보급 등 아이콘 4개를 128×128로 줄이도록 요청했습니다. 네 PNG 파일 합계는 약 <strong>3.01 MiB → 38.3 KiB</strong>가 됐고, 기존 UI 참조와 투명도를 유지했습니다.</dd>
-<dt>일반 소행성 이미지</dt><dd>작게 그려지는 일반 소행성 6종은 1254×1254에서 512×512로 축소하도록 요청했습니다. 여섯 PNG 파일 합계는 약 <strong>16.4 MiB → 2.54 MiB</strong>가 됐습니다. Codex가 스프라이트 영역과 월드 단위당 픽셀 수도 비례 조정해 게임 속 크기 차이를 최대 0.17%로 유지하고 프리팹 참조를 확인했습니다.</dd>
-</dl>
+<section class="optimization" aria-labelledby="opt-title">
+<h2 id="opt-title">최적화</h2><div class="opt-grid">
+<article><h3>첫 미사일 발사와 반복 생성</h3>
+<p>첫 발사 때 화면이 멈칫해, 미사일과 화염을 미리 준비한 경우와 비교하도록 요청했습니다. 워밍업 전후 화면 갱신 간격이 겹쳐 끊김의 원인은 특정하기 어려웠습니다.</p>
+<p>이어 반복 생성되는 미사일과 이펙트를 골라 풀링을 요청했습니다. Codex의 Unity Editor 검사에서 같은 미사일 한 발을 준비하는 시간이 줄었습니다.</p></article>
+<article><h3>이미지 용량 축소</h3>
+<p>화면에 18~20픽셀로 보이는 아이콘과 작은 소행성에 같은 1254×1254 원본을 쓰고 있어, 표시 크기에 맞춰 각각 줄이도록 요청했습니다.</p>
+<table><caption>PNG 원본 파일 합계</caption><thead><tr><th scope="col">대상</th><th scope="col">변경 전</th><th scope="col">변경 후</th></tr></thead><tbody>
+<tr><th scope="row">안내 아이콘 4개<small>128×128로 축소</small></th><td>3.01 MiB</td><td>38.3 KiB</td></tr>
+<tr><th scope="row">소행성 6종<small>512×512로 축소</small></th><td>16.4 MiB</td><td>2.54 MiB</td></tr></tbody></table>
+<p>아이콘의 투명도와 UI 참조를 유지했습니다. 소행성은 스프라이트 영역과 월드 단위당 픽셀 수도 조정해 게임 속 크기 차이가 최대 0.17%임을 확인했습니다.</p></article>
+</div></section>
 </section>
 <section class="other"><div class="wrap"><h2>프로젝트 상세</h2><div class="projects">
-<article id="black-chamber"><p class="meta">7인 팀 · Unity <span>/</span> 개발 기간 2025.09 ~ 2025.11</p><h3 lang="en">Black Chamber</h3><p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p>
-<iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-<p class="team-role"><b>담당</b> 적 AI · 소음 전파 · 적과 무기 데이터 연동</p>
+<article id="black-chamber"><div class="project-heading"><p class="meta">7인 팀 · Unity <span>/</span> 개발 기간 2025.09 ~ 2025.11</p><h3 lang="en">Black Chamber</h3><p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p></div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy"><p class="team-role"><b>담당</b> 적 AI · 소음 전파 · 적과 무기 데이터 연동</p>
 <h4>벽을 돌아 들리는 총성까지 계산하는 적 AI</h4>
 <p class="team-method">한 발의 총성에 대해 직선 경로와 벽을 우회하는 경로의 소리 세기를 각각 계산했습니다. 우회 경로의 길이는 NavMesh로 구했습니다. 두 값 중 큰 값을 적의 청각 기준과 비교하고, 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</p>
 <p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
 <div class="links">
 <a href="https://nextthewat.itch.io/black-chamber">게임 다운로드 (itch.io) ↗</a>
 <a href="https://github.com/NextTheWAT/2D_Black_Chamber">팀 GitHub 저장소 ↗</a>
-<a href="https://www.youtube.com/watch?v=OVt4j6ZTV6E">YouTube에서 보기 ↗</a></div></article>
-<article id="vr-spell"><p class="meta">3인 팀 · Unity <span>/</span> 개발 기간 2023.09 ~ 2024.10</p><h3 lang="en">VR Spell</h3><p class="team-intro">손으로 문양을 그려 마법을 시전하고, 밀려오는 몬스터를 막는 VR 디펜스.</p>
-<iframe class="project-video" width="560" height="315" loading="lazy" title="VR Spell 마법 시전 영상" src="https://www.youtube-nocookie.com/embed/dDI8KQEFRR0?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>
-<p class="team-role"><b>담당</b> 단독 프로그래머 · 마법 입력부터 웨이브 진행까지</p>
+<a href="https://www.youtube.com/watch?v=OVt4j6ZTV6E">YouTube에서 보기 ↗</a></div></div></article>
+<article id="vr-spell"><div class="project-heading"><p class="meta">3인 팀 · Unity <span>/</span> 개발 기간 2023.09 ~ 2024.10</p><h3 lang="en">VR Spell</h3><p class="team-intro">손으로 문양을 그려 마법을 시전하고, 밀려오는 몬스터를 막는 VR 디펜스.</p></div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="VR Spell 마법 시전 영상" src="https://www.youtube-nocookie.com/embed/dDI8KQEFRR0?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy"><p class="team-role"><b>담당</b> 단독 프로그래머 · 마법 입력부터 웨이브 진행까지</p>
 <h4>손을 떼고 이어 그려도 하나의 주문으로</h4>
 <p class="team-method">초기에는 주문 하나를 한 획에 그려야 했습니다. Meta XR SDK로 추적한 손가락 궤적을 여러 획으로 인식하도록 $1 Recognizer를 $Q Recognizer로 교체했습니다. 이제 손을 뗐다가 다음 획을 그려도 하나의 주문이 발동합니다.</p>
 <p class="team-extra"><b>전투 진행</b> 몬스터 AI와 웨이브별 등장을 구현하고, 레벨업하면 능력치를 강화할 수 있게 했습니다.</p>
-<div class="links"><a href="https://www.youtube.com/watch?v=dDI8KQEFRR0">YouTube에서 보기 ↗</a></div></article>
-<article id="rabbitgun">
-<p class="meta">잉크캣 · Unity <span>/</span> 개발 기간 2026.07 ~ 2026.08</p><h3 lang="en">RabbitGun</h3>
-<p class="team-intro">무기와 아이템을 챙기고 허기와 갈증을 관리하며 살아남는 2D 생존 슈팅.</p>
-<img class="project-still" src="rabbitgun.webp" width="1080" height="608" loading="lazy" alt="RabbitGun 플레이 화면">
-<p class="team-role"><b>담당</b> 단독 프로그래머 · 총기 조작 · 인벤토리 · 저장과 불러오기</p>
+<div class="links"><a href="https://www.youtube.com/watch?v=dDI8KQEFRR0">YouTube에서 보기 ↗</a></div></div></article>
+<article id="rabbitgun"><div class="project-heading"><p class="meta">잉크캣 · Unity <span>/</span> 개발 기간 2026.07 ~ 2026.08</p><h3 lang="en">RabbitGun</h3>
+<p class="team-intro">무기와 아이템을 챙기고 허기와 갈증을 관리하며 살아남는 2D 생존 슈팅.</p></div><div class="project-media"><img class="project-still" src="rabbitgun.webp" width="1080" height="608" loading="lazy" alt="RabbitGun 플레이 화면"></div><div class="project-copy"><p class="team-role"><b>담당</b> 단독 프로그래머 · 총기 조작 · 인벤토리 · 저장과 불러오기</p>
 <h4>다시 시작해도 이어지는 소지품과 생존 상태</h4>
 <p class="team-method">이어하기에 필요한 상태를 플레이어와 월드로 나눴습니다. 플레이어의 위치·소지품·허기·갈증과 함께 적의 상태와 게임 속 시간까지 저장 범위에 포함했습니다.</p>
-<p class="team-extra"><b>전투 조작</b> 조준·재장전과 퀵슬롯 장착 시 기대하는 동작을 정하고 Codex에 수정 방향을 전달했습니다.</p>
-</article>
-<article id="earthquake-vr">
-<p class="meta">4인 팀 · Unity <span>/</span> 개발 기간 2019.03 ~ 2019.11</p><h3 lang="en">Survival Earthquake in VR</h3>
-<p class="team-intro">가상 공간에서 주변 사물을 조작하고 다른 참가자와 함께 지진 대피를 연습하는 VR 교육 콘텐츠.</p>
-<img class="project-still" src="earthquake-vr.webp" width="456" height="229" loading="lazy" alt="VR 지진 대피 체험의 가상 공간">
-<p class="team-role"><b>담당</b> VR 상호작용 · 멀티플레이 · 시팅 시뮬레이터 연동</p>
+<p class="team-extra"><b>전투 조작</b> 조준·재장전과 퀵슬롯 장착 시 기대하는 동작을 정하고 Codex에 수정 방향을 전달했습니다.</p></div></article>
+<article id="earthquake-vr"><div class="project-heading"><p class="meta">4인 팀 · Unity <span>/</span> 개발 기간 2019.03 ~ 2019.11</p><h3 lang="en">Survival Earthquake in VR</h3>
+<p class="team-intro">가상 공간에서 주변 사물을 조작하고 다른 참가자와 함께 지진 대피를 연습하는 VR 교육 콘텐츠.</p></div><div class="project-media"><img class="project-still" src="earthquake-vr.webp" width="456" height="229" loading="lazy" alt="VR 지진 대피 체험의 가상 공간"></div><div class="project-copy"><p class="team-role"><b>담당</b> VR 상호작용 · 멀티플레이 · 시팅 시뮬레이터 연동</p>
 <h4>손으로 사물을 조작하고 함께 대피하는 VR 체험</h4>
 <p class="team-method">HTC VIVE로 사물을 조작하는 기능을 구현했습니다. 참가자들이 같은 가상 공간에서 대피하도록 Photon으로 멀티플레이를 구성하고, 체험에 쓰는 좌석 장치는 시팅 시뮬레이터 API로 Unity에 연결했습니다.</p>
-<p class="team-extra"><b>팀 수상</b> 2019 공학페스티벌 창의적 종합설계 경진대회 한국공학교육학회장상</p>
-</article></div></div></section>
+<p class="team-extra"><b>팀 수상</b> 2019 공학페스티벌 창의적 종합설계 경진대회 한국공학교육학회장상</p></div></article></div></div></section>
 </main><footer id="contact"><div class="wrap foot"><div><p class="eyebrow">연락처</p><h2>김혜현</h2><p>Unity 게임 클라이언트 개발자</p></div><div class="contact"><a href="mailto:khh7052@naver.com">khh7052@naver.com ↗</a><a href="https://github.com/khh7052">GitHub ↗</a></div></div></footer>
 </body></html>
