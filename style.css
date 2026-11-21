@@ -108,7 +108,11 @@ body:has(.project-dialog[open]) { overflow: hidden; }
 .project-dialog-heading .project-title { margin: 0; }
 .project-dialog-heading h1 { font-size: clamp(22px,3vw,40px); line-height: 1.15; }
 .project-dialog button { min-height: 44px; padding-inline: 12px; border: 1px solid var(--line); border-radius: 6px; background: #fffef9; color: var(--ink); font: inherit; font-weight: 700; cursor: pointer; }
-.project-dialog-toolbar button { flex: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; font-size: 24px; line-height: 1; }
+.project-dialog-toolbar button { flex: none; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; }
+.project-close-icon { display: grid; place-items: center; width: 18px; height: 18px; }
+.project-close-icon::before,.project-close-icon::after { content: ""; grid-area: 1 / 1; width: 16px; height: 2px; border-radius: 1px; background: currentColor; }
+.project-close-icon::before { transform: rotate(45deg); }
+.project-close-icon::after { transform: rotate(-45deg); }
 .project-dialog button:hover { border-color: var(--muted); }
 .project-dialog button:focus-visible { outline: 3px solid #e68e27; outline-offset: 3px; }
 .project-dialog-content { margin: 0; padding: clamp(16px,3vw,36px); }
