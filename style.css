@@ -77,10 +77,10 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-heading { grid-area: heading; }
 .project-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; margin-bottom: 6px; }
 .project-title h1 { font-size: clamp(30px,4vw,54px); line-height: 1.15; letter-spacing: -.045em; }
-.project-heading .team-intro { margin-top: 8px; }
 .project-back { font-weight: 700; }
 .project-media { grid-area: media; }
 .project-copy { grid-area: copy; }
+.project-copy .team-intro { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--ink); }
 .project-heading .project-period,.team-role { display: inline-block; white-space: nowrap; }
 .project-heading .project-period { margin-inline: 0; opacity: 1; }
 .team-role { color: var(--ink); }

@@ -7,18 +7,19 @@
 <meta name="description" content="Black Chamber에서 김혜현이 맡은 역할과 구현을 소개합니다.">
 <title>Black Chamber — 김혜현</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=inline-role">
+<link rel="stylesheet" href="style.css?v=project-intro">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
-<header><div class="wrap head"><a class="name" href="./?v=inline-role">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="./?v=inline-role#projects">팀 프로젝트</a><a href="#contact">연락처</a></nav></div></header>
+<header><div class="wrap head"><a class="name" href="./?v=project-intro">김혜현 <span>게임 클라이언트 개발자</span></a><nav aria-label="주요 메뉴"><a href="./?v=project-intro#projects">팀 프로젝트</a><a href="#contact">연락처</a></nav></div></header>
 <main class="other" id="work">
 <div class="wrap">
-<a class="project-back" href="./?v=inline-role#projects">← 팀 프로젝트</a>
+<a class="project-back" href="./?v=project-intro#projects">← 팀 프로젝트</a>
 <div class="projects project-detail">
 <article id="black-chamber"><div class="project-heading"><div class="project-title"><h1 lang="en">Black Chamber</h1></div>
 <p class="meta">7인 팀 · Unity <span class="project-period"><span aria-hidden="true">/</span> 개발 기간 2025.09 ~ 2025.11</span> <strong class="team-role"><span aria-hidden="true">/</span> 적 AI · 데이터 연동</strong></p>
-<p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p></div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy">
+</div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy">
+<p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p>
 <h2>벽을 돌아 들리는 총성까지 계산하는 적 AI</h2>
 <p class="team-method">한 발의 총성에 대해 직선 경로와 벽을 우회하는 경로의 소리 세기를 각각 계산했습니다. 우회 경로의 길이는 NavMesh로 구했습니다. 두 값 중 큰 값을 적의 청각 기준과 비교하고, 의심·수색·공격 행동은 상태 머신으로 관리했습니다.</p>
 <p class="team-extra"><b>데이터 연동</b> 기획자가 Google Sheets에서 바꾼 적·무기 수치를 Unity가 Firebase에서 읽도록 연결했습니다.</p>
