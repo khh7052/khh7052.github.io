@@ -44,6 +44,15 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .actions { margin-top: 22px; }
 .button { display: inline-block; background: var(--accent); color: #191b1a; padding: 9px 20px; border-radius: 4px; font-weight: 750; }
 .button:hover { background: #ffe29a; }
+.asteroid-implementation { padding-block: clamp(24px,3.5vw,42px); background: #fffef9; border-bottom: 1px solid var(--line); }
+.asteroid-implementation > .wrap { max-width: 1080px; }
+.asteroid-implementation-intro { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.6fr); align-items: baseline; gap: 10px clamp(16px,3vw,40px); margin-bottom: clamp(16px,2vw,24px); }
+.asteroid-implementation h2 { font-size: clamp(22px,2.4vw,32px); }
+.asteroid-implementation-intro p { color: var(--muted); }
+.asteroid-implementation-media { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(12px,2vw,24px); }
+.asteroid-implementation-media img { display: block; width: 100%; height: auto; border-radius: 6px; background: var(--night); }
+.asteroid-implementation-media figcaption { display: grid; gap: 2px; padding-top: 8px; color: var(--muted); }
+.asteroid-implementation-media strong { font-size: 15px; color: var(--ink); }
 .work-overview { padding-block: clamp(28px,4vw,56px); }
 .work-overview h2 { font-size: clamp(24px,2.6vw,36px); margin-bottom: clamp(16px,2vw,26px); }
 .practice-overview { padding-bottom: 0; }
@@ -137,6 +146,7 @@ body:has(.project-dialog[open]) { overflow: hidden; }
   .name span { display: none; }
   .hero-grid,.projects article { display: flex; flex-direction: column; align-items: stretch; }
   .hero-grid { padding-block: 20px; gap: 18px; }
+  .asteroid-implementation-intro,.asteroid-implementation-media { grid-template-columns: 1fr; }
   h1 img { width: min(62%,260px); margin-block: 9px; }
   .actions { margin-top: 12px; }
   .projects article { gap: 14px; padding-block: 20px; }
