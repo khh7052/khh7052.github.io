@@ -83,7 +83,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-spawn-flow strong,.asteroid-spawn-flow span { display: block; }
 .asteroid-spawn-flow span { margin-top: 4px; }
 .asteroid-technical .asteroid-spawn-note { margin-top: 16px; padding-top: 12px; border-top: 1px solid #bbd3cf; }
-.asteroid-technical-details { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 18px; }
+.asteroid-technical-details { grid-template-columns: repeat(auto-fit,minmax(min(100%,245px),1fr)); margin-top: 18px; }
 .asteroid-technical-details article { padding: 12px clamp(12px,1.8vw,22px); border-left: 3px solid #337584; }
 .asteroid-problems { padding-block: clamp(28px,4.5vw,56px); background: #fffaf2; border-bottom: 1px solid #e4d9c9; }
 .asteroid-problem-cases { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(14px,2.5vw,32px); margin-top: clamp(16px,2vw,24px); }
