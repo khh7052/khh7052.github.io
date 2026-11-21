@@ -54,6 +54,19 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-index span { color: #d0d2c9; font-size: 14px; }
 .case,.other { padding-block: clamp(38px,5vw,78px); }
 .case>.eyebrow { color: var(--muted); margin-bottom: 6px; }
+.missile-study { margin-block: 24px 36px; padding: clamp(14px,2.5vw,32px); background: #182022; color: #f7f5ed; }
+.missile-study h3 { font-size: clamp(23px,2.4vw,34px); margin-bottom: 8px; }
+.hit-strip,.hit-code { display: grid; gap: clamp(6px,1.5vw,20px); }
+.hit-strip { grid-template-columns: repeat(3,minmax(0,1fr)); margin-block: 18px 5px; }
+.hit-strip figcaption { font-size: clamp(15px,1.5vw,22px); font-weight: 700; }
+.hit-strip img { display: block; width: 100%; aspect-ratio: 16/9; margin-block: 6px; object-fit: cover; }
+.hit-strip p,.missile-study small { font-size: 13px; }
+.missile-study small { display: block; color: #b7c1be; }
+.hit-code { grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); margin: 18px 0 0; }
+.hit-code div { border-top: 1px solid #62706b; padding-top: 10px; }
+.hit-code dt { color: #ffdc84; font-weight: 700; }
+.hit-code dt code { display: block; font-size: 14px; }
+.hit-code dd { margin: 5px 0 0; font-size: 15px; overflow-wrap: anywhere; }
 .case-studies { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(16px,2.4vw,34px); margin-block: 26px 32px; align-items: start; }
 .case-studies article { border-top: 3px solid var(--ink); padding-top: 14px; }
 .case-studies .domain { color: #4f5e4d; font-size: 13px; font-weight: 700; }
