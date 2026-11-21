@@ -81,8 +81,9 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .project-back { font-weight: 700; }
 .project-media { grid-area: media; }
 .project-copy { grid-area: copy; }
-.team-role { margin-top: 8px; font-size: 15px; }
-.team-role b { margin-right: 6px; }
+.project-heading .project-period,.team-role { display: inline-block; white-space: nowrap; }
+.project-heading .project-period { margin-inline: 0; opacity: 1; }
+.team-role { color: var(--ink); }
 .project-copy h2 { margin-bottom: 8px; font-size: clamp(19px,1.6vw,24px); }
 .project-dialog { width: min(1120px,calc(100% - 48px)); max-width: none; max-height: calc(100dvh - 48px); padding: 0; border: 1px solid var(--line); border-radius: 14px; color: var(--ink); background: #fffef9; overscroll-behavior: contain; box-shadow: 0 20px 64px rgb(10 15 18 / 30%); }
 .project-dialog,.project-dialog::backdrop { opacity: 1; transition: opacity 180ms ease; }
