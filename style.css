@@ -57,6 +57,8 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .scenes { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: clamp(16px,2vw,28px); margin-top: 20px; }
 .scenes img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; }
 .scenes figcaption { font-size: 16px; }
+.scene-slot { aspect-ratio: 16/9; border: 1px solid var(--line); border-radius: 3px; }
+.scene-slot + figcaption { min-height: 2rem; }
 .scenes h3 { margin: 12px 0 6px; font-size: 22px; }
 .scenes code { overflow-wrap: anywhere; }
 .scenes small { display: block; margin-top: 6px; color: var(--muted); }

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10191c">
-<meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. Asteroid Alert의 전투 구현과 네 팀 프로젝트에서 맡은 역할을 소개합니다.">
+<meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert와 네 팀 프로젝트에서 맡은 역할을 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=scene-gallery-2">
+<link rel="stylesheet" href="style.css?v=empty-layout">
 </head>
 <body>
 <a class="skip" href="#work">본문으로 이동</a>
@@ -29,12 +29,12 @@
 <a href="#earthquake-vr"><img src="earthquake-vr.webp" alt="" width="320" height="180"><strong lang="en">Survival Earthquake in VR</strong><span>VR 상호작용 · 멀티플레이 · 체험 장치 연동</span></a>
 </nav></div></section>
 <section class="scene-gallery wrap" id="asteroid" aria-labelledby="asteroid-title">
-<p class="eyebrow" id="case">Asteroid Alert</p>
-<h2 id="asteroid-title">미사일 명중과 증강 효과</h2>
-<div class="scenes">
-  <figure><img src="direct-hit.webp" alt="미사일에 맞은 얼음 소행성이 파괴되는 장면" loading="lazy"><figcaption><h3>일반 명중</h3><p>미사일이 소행성과 충돌하면 접촉 위치에서 직격 피해를 적용합니다. 남은 체력이 소진되면 소행성이 파괴됩니다.</p></figcaption></figure>
-  <figure><img src="star-cluster.webp" alt="행성 주변에 별무리 영역 45개를 중첩한 플레이 모드 화면" loading="lazy"><figcaption><h3>별무리</h3><p>직격 피해를 준 뒤 명중 위치에 별빛 영역을 더합니다. 별무리는 <code>IMissileImpactEffect</code>로 등록되어 명중할 때 호출됩니다.</p><small>플레이 모드에서 영역 45개를 겹친 화면</small></figcaption></figure>
-  <figure><img src="nebula.webp" alt="충돌 지점에 푸른 성운이 퍼지는 장면" loading="lazy"><figcaption><h3>성운</h3><p>폭발형 미사일의 직격 피해는 유지합니다. 성운이 활성화되면 <code>IMissileExplosionStrategy</code>가 즉시 폭발을 교체하고, 퍼지는 영역 안의 적에게 주기적으로 피해를 줍니다.</p></figcaption></figure>
+<p class="eyebrow" id="case">대표작 상세</p>
+<h2 id="asteroid-title">Asteroid Alert</h2>
+<div class="scenes" aria-hidden="true">
+  <figure><div class="scene-slot"></div><figcaption></figcaption></figure>
+  <figure><div class="scene-slot"></div><figcaption></figcaption></figure>
+  <figure><div class="scene-slot"></div><figcaption></figcaption></figure>
 </div></section>
 <section class="other"><div class="wrap"><h2>프로젝트 상세</h2><div class="projects">
 <article id="black-chamber"><div class="project-heading"><p class="meta">7인 팀 · Unity <span>/</span> 개발 기간 2025.09 ~ 2025.11</p><h3 lang="en">Black Chamber</h3><p class="team-intro">적의 시야를 피해 잠입하고, 발각되면 총격전을 벌이는 2D 탑다운 액션.</p></div><div class="project-media"><iframe class="project-video" width="560" height="315" loading="lazy" title="Black Chamber 플레이 영상" src="https://www.youtube-nocookie.com/embed/OVt4j6ZTV6E?playsinline=1" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div><div class="project-copy"><p class="team-role"><b>담당</b> 적 AI · 소음 전파 · 적과 무기 데이터 연동</p>
