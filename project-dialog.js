@@ -8,6 +8,14 @@ if (typeof dialog.showModal === 'function') {
   let request;
   let activeCard;
   let closing = false;
+  let pressedBackdrop = false;
+
+  function isBackdrop(event) {
+    if (event.target !== dialog) return false;
+    const { left, right, top, bottom } = dialog.getBoundingClientRect();
+    return event.clientX < left || event.clientX >= right
+      || event.clientY < top || event.clientY >= bottom;
+  }
 
   async function showProject(card) {
     request?.abort();
@@ -95,6 +103,13 @@ if (typeof dialog.showModal === 'function') {
     });
   }
   closeButton.addEventListener('click', closeProject);
+  dialog.addEventListener('pointerdown', (event) => {
+    pressedBackdrop = event.button === 0 && isBackdrop(event);
+  });
+  dialog.addEventListener('click', (event) => {
+    if (pressedBackdrop && isBackdrop(event)) closeProject();
+    pressedBackdrop = false;
+  });
   dialog.addEventListener('cancel', (event) => {
     event.preventDefault();
     closeProject();
