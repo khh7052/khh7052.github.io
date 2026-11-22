@@ -170,15 +170,15 @@
           <p class="asteroid-case-note">Unity Editor에서 측정한 중앙값입니다. 파괴음 사전 로드는 전체 프레임 개선을 확인하기 위해 임시 적용했습니다.</p>
         </article>
         <article class="asteroid-spawn-case">
-          <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>
-          <p>소행성은 시간이 지나며 쌓이는 생성 점수를 써서 등장합니다.</p>
+          <h3>비용이 큰 소행성을 기다리는 동안 일반 소행성도 멈춤</h3>
+          <p>일반 웨이브 후반에는 생성 점수가 더 빨리 쌓여 소행성의 등장 간격이 대체로 짧아집니다. 그래도 예전에는 비용이 큰 소행성이 뽑히고 점수가 부족하면, 이미 등장할 수 있는 일반 소행성까지 잠깐 기다렸습니다.</p>
           <div class="asteroid-spawn-diagrams">
             <section class="asteroid-spawn-diagram asteroid-spawn-before" aria-labelledby="asteroid-spawn-before-title">
               <h4 id="asteroid-spawn-before-title">변경 전</h4>
               <ol class="asteroid-spawn-path" role="list">
                 <li class="asteroid-spawn-node">모든 소행성이 한곳에 모은 점수를 씀</li>
-                <li class="asteroid-spawn-node">다음에 나올 소행성에 필요한 점수가 부족함</li>
-                <li class="asteroid-spawn-node asteroid-spawn-node-stop">점수를 모으는 동안 일반 소행성도 멈춤</li>
+                <li class="asteroid-spawn-node">비용이 큰 소행성이 뽑혔지만 점수가 부족함</li>
+                <li class="asteroid-spawn-node asteroid-spawn-node-stop">그 소행성을 기다리느라 일반 소행성도 잠깐 멈춤</li>
               </ol>
             </section>
             <section class="asteroid-spawn-diagram asteroid-spawn-after" aria-labelledby="asteroid-spawn-after-title">
@@ -187,7 +187,7 @@
               <div class="asteroid-spawn-branches">
                 <ol class="asteroid-spawn-path" role="list" aria-label="일반 소행성 생성 경로">
                   <li class="asteroid-spawn-node">일반 소행성</li>
-                  <li class="asteroid-spawn-node asteroid-spawn-node-go">일반 소행성에 쓸 점수로 계속 등장</li>
+                  <li class="asteroid-spawn-node asteroid-spawn-node-go">일반 소행성에 쓸 점수가 충분하면 등장</li>
                 </ol>
                 <ol class="asteroid-spawn-path" role="list" aria-label="비용이 큰 소행성 생성 경로">
                   <li class="asteroid-spawn-node">많은 점수가 필요한 소행성</li>
@@ -198,8 +198,8 @@
           </div>
           <div class="asteroid-case-body">
             <dl class="asteroid-case-steps">
-              <div><dt>발견</dt><dd>플레이 중 소행성이 한동안 거의 나오지 않았고, 그 공백이 일반 웨이브에서 생긴다는 점을 짚었습니다.</dd></div>
-              <div><dt>수정 방향</dt><dd>시간당 쌓이는 점수의 총량을 유지하면서, 일반 소행성에 쓸 점수와 생성 비용이 큰 소행성에 쓸 점수를 나눴습니다.</dd></div>
+              <div><dt>발견</dt><dd>일반 웨이브를 플레이하다 소행성의 등장이 잠깐 끊기는 구간을 발견했습니다.</dd></div>
+              <div><dt>수정 방향</dt><dd>점수가 들어오는 전체 속도를 유지하면서, 일반 소행성에 쓸 점수와 비용이 큰 소행성에 쓸 점수를 나눴습니다.</dd></div>
             </dl>
             <p class="asteroid-case-verification"><strong>검증 결과</strong><span>10분 분량의 생성 시뮬레이션에서 생성 비용이 큰 소행성에 쓸 점수를 모으는 동안에도 일반 소행성이 계속 나왔습니다. 수정한 코드는 Unity 컴파일을 통과했습니다.</span></p>
           </div>
