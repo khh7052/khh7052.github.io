@@ -68,16 +68,16 @@
         <details class="asteroid-disclosure">
           <summary>
             <span class="asteroid-disclosure-title">웨이브와 소행성 생성</span>
-            <span class="asteroid-disclosure-summary">웨이브마다 등장 후보를 갱신하고, 가중치와 생성 예산으로 다음 소행성을 결정합니다.</span>
+            <span class="asteroid-disclosure-summary">웨이브마다 등장할 소행성 종류를 정하고, 시간에 따라 쌓이는 점수로 소행성을 생성합니다.</span>
           </summary>
           <div class="asteroid-disclosure-body">
-            <p>웨이브가 바뀌면 등장 가능한 소행성 종류와 생성 강도를 갱신합니다. 웨이브 중에는 아래 순서로 다음에 생성할 소행성을 결정합니다.</p>
+            <p>소행성 종류마다 생성에 필요한 점수가 다릅니다. 게임은 웨이브마다 등장 가능한 종류와 점수가 쌓이는 속도를 정합니다.</p>
             <ol class="asteroid-process-flow" role="list">
-              <li><strong>예산을 쌓습니다</strong><span>시간에 따라 예산을 적립합니다. 일반 소행성과 생성 비용이 큰 소행성의 예산은 따로 쌓습니다.</span></li>
-              <li><strong>가중치로 후보를 뽑습니다</strong><span>등장 가중치가 높은 유형일수록 뽑힐 확률이 큽니다. 비용이 큰 후보는 자기 몫의 예산이 찰 때까지 대기합니다.</span></li>
-              <li><strong>생성한 뒤 비용을 차감합니다</strong><span>위치를 확보하고 실제로 소행성을 생성한 경우에만 해당 비용을 예산에서 뺍니다.</span></li>
+              <li><strong>생성 점수를 모읍니다</strong><span>일반 소행성에 쓸 점수와 더 많은 점수가 필요한 소행성에 쓸 점수를 따로 모읍니다.</span></li>
+              <li><strong>다음에 등장할 종류를 뽑습니다</strong><span>종류별 등장 확률에 따라 뽑습니다. 많은 점수가 필요한 소행성이 뽑히면, 그 소행성에 쓸 점수가 충분해질 때까지 생성을 미룹니다.</span></li>
+              <li><strong>등장한 뒤 점수를 씁니다</strong><span>등장 위치를 확보해 소행성이 실제로 생성되면, 그 종류에 필요한 만큼 점수를 뺍니다.</span></li>
             </ol>
-            <p class="asteroid-process-note"><strong>추첨 기준</strong><span>일반 소행성은 그 그룹에서 가장 비싼 유형까지 생성할 수 있을 때 추첨합니다. 가장 싼 유형만 계속 생성되는 것을 막기 위해서입니다.</span></p>
+            <p class="asteroid-process-note"><strong>일반 소행성의 추첨 시점</strong><span>일반 소행성 중 가장 많은 점수가 필요한 종류까지 생성할 수 있을 때 추첨합니다. 적은 점수로 생성할 수 있는 종류만 반복해서 나오는 일을 줄이기 위해서입니다.</span></p>
           </div>
         </details>
         <details class="asteroid-disclosure">
@@ -170,26 +170,27 @@
         </article>
         <article class="asteroid-spawn-case">
           <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>
+          <p>소행성은 시간이 지나며 쌓이는 생성 점수를 써서 등장합니다.</p>
           <div class="asteroid-spawn-diagrams">
             <section class="asteroid-spawn-diagram asteroid-spawn-before" aria-labelledby="asteroid-spawn-before-title">
               <h4 id="asteroid-spawn-before-title">변경 전</h4>
               <ol class="asteroid-spawn-path" role="list">
-                <li class="asteroid-spawn-node">모든 소행성이 같은 생성 예산을 씀</li>
-                <li class="asteroid-spawn-node">비용이 큰 소행성이 뽑혔지만 예산이 부족함</li>
-                <li class="asteroid-spawn-node asteroid-spawn-node-stop">예산이 찰 때까지 다른 소행성도 나오지 않음</li>
+                <li class="asteroid-spawn-node">모든 소행성이 한곳에 모은 점수를 씀</li>
+                <li class="asteroid-spawn-node">다음에 나올 소행성에 필요한 점수가 부족함</li>
+                <li class="asteroid-spawn-node asteroid-spawn-node-stop">점수를 모으는 동안 일반 소행성도 멈춤</li>
               </ol>
             </section>
             <section class="asteroid-spawn-diagram asteroid-spawn-after" aria-labelledby="asteroid-spawn-after-title">
               <h4 id="asteroid-spawn-after-title">변경 후</h4>
-              <p class="asteroid-spawn-node">전체 예산을 비용에 따라 나눠 모음</p>
+              <p class="asteroid-spawn-node">두 그룹에 쓸 점수를 따로 모음</p>
               <div class="asteroid-spawn-branches">
                 <ol class="asteroid-spawn-path" role="list" aria-label="일반 소행성 생성 경로">
-                  <li class="asteroid-spawn-node">일반 소행성 예산</li>
-                  <li class="asteroid-spawn-node asteroid-spawn-node-go">예산이 충분하면 계속 생성</li>
+                  <li class="asteroid-spawn-node">일반 소행성</li>
+                  <li class="asteroid-spawn-node asteroid-spawn-node-go">일반 소행성에 쓸 점수로 계속 등장</li>
                 </ol>
                 <ol class="asteroid-spawn-path" role="list" aria-label="비용이 큰 소행성 생성 경로">
-                  <li class="asteroid-spawn-node">비용이 큰 소행성 예산</li>
-                  <li class="asteroid-spawn-node asteroid-spawn-node-wait">이 후보만 예산이 찰 때까지 대기</li>
+                  <li class="asteroid-spawn-node">많은 점수가 필요한 소행성</li>
+                  <li class="asteroid-spawn-node asteroid-spawn-node-wait">전용 점수가 충분해지면 등장</li>
                 </ol>
               </div>
             </section>
@@ -197,9 +198,9 @@
           <div class="asteroid-case-body">
             <dl class="asteroid-case-steps">
               <div><dt>발견</dt><dd>플레이 중 소행성이 한동안 거의 나오지 않았고, 그 공백이 일반 웨이브에서 생긴다는 점을 짚었습니다.</dd></div>
-              <div><dt>수정 방향</dt><dd>전체 생성 예산을 늘리지 않고도 일반 소행성이 계속 나오도록, 비용이 큰 소행성에 쓸 예산을 따로 모으는 방안을 택했습니다.</dd></div>
+              <div><dt>수정 방향</dt><dd>시간당 쌓이는 점수의 총량을 유지하면서, 일반 소행성에 쓸 점수와 생성 비용이 큰 소행성에 쓸 점수를 나눴습니다.</dd></div>
             </dl>
-            <p class="asteroid-case-verification"><strong>검증 결과</strong><span>10분 분량의 생성 시뮬레이션에서 비용이 큰 후보를 기다리는 동안에도 일반 소행성이 계속 생성됐습니다. 수정한 코드는 Unity 컴파일을 통과했습니다.</span></p>
+            <p class="asteroid-case-verification"><strong>검증 결과</strong><span>10분 분량의 생성 시뮬레이션에서 생성 비용이 큰 소행성에 쓸 점수를 모으는 동안에도 일반 소행성이 계속 나왔습니다. 수정한 코드는 Unity 컴파일을 통과했습니다.</span></p>
           </div>
         </article>
       </div>
