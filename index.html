@@ -7,7 +7,7 @@
 <meta name="description" content="김혜현의 Unity 게임 클라이언트 개발 포트폴리오. 대표작 Asteroid Alert, 잉크캣 실무 프로젝트 RabbitGun, 세 팀 프로젝트를 소개합니다.">
 <title>김혜현 — Unity 게임 클라이언트 개발자</title>
 <link rel="icon" href="icon.webp">
-<link rel="stylesheet" href="style.css?v=asteroid-destruction">
+<link rel="stylesheet" href="style.css?v=asteroid-destruction-warmup">
 <script src="project-dialog.js?v=project-dialog-dismiss" defer></script>
 </head>
 <body>
@@ -159,14 +159,14 @@
           <h3 id="asteroid-first-use-title">소행성 파괴 순간의 프레임 끊김</h3>
           <ol class="asteroid-diagnosis-flow" role="list">
             <li><h4>문제 발견</h4><p>플레이 중 소행성이 파괴되는 순간 화면이 멈칫하는 것을 발견했습니다.</p></li>
-            <li><h4>워밍업 요청</h4><p>폭발 이펙트를 전투 전에 준비하도록 요청했습니다. 이후 워밍업을 끄고 같은 종류의 소행성을 반복해서 파괴하며 지연을 재현했습니다.</p></li>
-            <li><h4>해결 방향 확인</h4><p>전체 프레임과 파괴 처리 시간을 함께 재니, 첫 파괴에 폭발 이펙트 준비와 효과음 로드가 겹쳤습니다. 두 리소스의 준비를 파괴 전에 끝내는 방향으로 좁혔습니다.</p></li>
+            <li><h4>워밍업 요청</h4><p>폭발·피격·먼지 이펙트를 풀에 미리 배치하도록 요청했습니다. 게임 시작 시 애니메이터를 초기화하고, 전용 카메라로 이펙트를 미리 렌더링했습니다.</p></li>
+            <li><h4>개선 결과</h4><p>이펙트 워밍업으로 폭발 처리 비용을 줄였습니다. 여기에 파괴음을 미리 읽는 실험을 더하니 첫 파괴 프레임도 짧아졌습니다. 연구 카드 화면도 사전 준비를 켰을 때 첫 표시 지연이 줄었습니다.</p></li>
           </ol>
-          <dl class="asteroid-case-metrics" aria-label="소행성 파괴 순간의 전체 프레임 시간">
-            <div><dt>첫 파괴 프레임</dt><dd><strong>26.81 ms</strong></dd></div>
-            <div><dt>후속 파괴 프레임</dt><dd><strong>16.97 ms</strong></dd></div>
+          <dl class="asteroid-case-metrics" aria-label="사전 준비 전후 전체 프레임 시간">
+            <div><dt>첫 소행성 파괴 프레임</dt><dd><strong>25.18 → 17.48 ms</strong><span>이펙트 워밍업을 유지하고 파괴음 3종을 미리 읽음</span></dd></div>
+            <div><dt>첫 연구 카드 표시 구간 최대 프레임</dt><dd><strong>39.57 → 17.55 ms</strong><span>같은 후보로 초기 준비 끔 → 켬</span></dd></div>
           </dl>
-          <p class="asteroid-case-note">Unity Editor에서 워밍업을 끄고 측정한 중앙값입니다. 첫 파괴는 소행성이 앞선 피격에서 살아남은 뒤에 측정했습니다.</p>
+          <p class="asteroid-case-note">Unity Editor에서 측정한 중앙값입니다. 파괴음 사전 로드는 전체 프레임 개선을 확인하기 위해 임시 적용했습니다.</p>
         </article>
         <article class="asteroid-spawn-case">
           <h3>일반 웨이브 도중 소행성 생성이 뜸해짐</h3>

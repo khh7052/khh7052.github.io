@@ -124,7 +124,7 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 .asteroid-case-metrics dt { font-size: 14px; font-weight: 750; }
 .asteroid-case-metrics dd { display: grid; gap: 3px; margin: 3px 0 0; }
 .asteroid-case-metrics strong { color: var(--case-heading); font-size: clamp(18px,2.35vw,27px); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.asteroid-case-note { color: #4e5350; font-size: 13px; }
+.asteroid-case-metrics span,.asteroid-case-note { color: #4e5350; font-size: 13px; }
 .asteroid-case-steps { display: grid; gap: 10px; margin: 0; }
 .asteroid-case-steps > div,.asteroid-case-verification { display: grid; grid-template-columns: 6em minmax(0,1fr); gap: 4px 8px; align-items: baseline; }
 .asteroid-case-steps dt { font-weight: 750; color: var(--case-heading); }
@@ -155,6 +155,10 @@ h1 img { display: block; width: min(100%,415px); height: auto; margin-block: 18p
 }
 @media(max-width:640px){
   .asteroid-case-steps > div,.asteroid-case-verification { grid-template-columns: 1fr; }
+}
+@media(max-width:480px){
+  .asteroid-case-metrics { grid-template-columns: 1fr; }
+  .asteroid-case-metrics > div + div { border-top: 1px solid #dfd5c6; border-left: 0; }
 }
 .work-overview { padding-block: clamp(28px,4vw,56px); }
 .work-overview h2 { font-size: clamp(24px,2.6vw,36px); margin-bottom: clamp(16px,2vw,26px); }
